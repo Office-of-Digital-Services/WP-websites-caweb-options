@@ -1,5 +1,32 @@
-<p>
-    <select onchange="$('#tablepress-88').DataTable().column(4).search(this.value).draw();"><option selected="selected" value="">Show All Status</option><option value="Green">🟢 Green</option><option value="Yellow">🟡 Yellow</option><option value="Red">🔴 Red</option></select></p>
-    <p><select onchange="$('#tablepress-88').DataTable().column(3).search(this.value).draw();"><option selected="selected" value="">Show all criticality ratings</option><option value="Low">🟢 Low</option><option value="Medium">🟡 Medium</option><option value="High">🔴 High</option></select></p>
-    <p><select id="ddRisk" onchange="$('#tablepress-88').DataTable().column(5).search(this.value).draw();"><option selected="selected" value="">Show All Delegation/Risk</option><option>Dept Delegation</option><option value="CDT Oversight - High Risk">CDT Oversight - High Risk</option><option value="CDT Oversight - Medium Risk">CDT Oversight - Medium Risk</option><option value="CDT Oversight - Low Risk">CDT Oversight - Low Risk</option></select></p>
-    <div id="funding_container">[table id=88 /]</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label for="ddStatus" class="mb-1 sr-only">Select status ratings</label>
+        <select id="ddStatus" onchange="$('#tablepress-88').DataTable().column(4).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Status filter">
+            <option selected="selected" value="">Show All Status</option>
+            <option value="Green">🟢 Green</option>
+            <option value="Yellow">🟡 Yellow</option>
+            <option value="Red">🔴 Red</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="ddCriticality" class="mb-1  sr-only">Select criticality ratings</label>
+        <select id="ddCriticality" onchange="$('#tablepress-88').DataTable().column(3).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Criticality ratings filter">
+            <option selected="selected" value="">Show all criticality ratings</option>
+            <option value="Low">🟢 Low</option>
+            <option value="Medium">🟡 Medium</option>
+            <option value="High">🔴 High</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="ddRisk" class="mb-1 sr-only">Select delegation/risk</label>
+        <select id="ddRisk" onchange="$('#tablepress-88').DataTable().column(5).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Delegation or Risk filter">
+            <option selected="selected" value="">Show All Delegation/Risk</option>
+            <option>Dept Delegation</option>
+            <option value="CDT Oversight - High Risk">CDT Oversight - High Risk</option>
+            <option value="CDT Oversight - Medium Risk">CDT Oversight - Medium Risk</option>
+            <option value="CDT Oversight - Low Risk">CDT Oversight - Low Risk</option>
+        </select>
+    </div>
+</div>
+<div id="funding_container">[table id=88 /]</div>
