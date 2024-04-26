@@ -5,7 +5,8 @@
      cursor: pointer;
    }
 </style>
-<div class="bg-gray-75 p-a rounded-10">
+<div class="container mx-auto">
+  <h1>Statewide Project Portfolio and Project Outcomes</h1>
   <h2 class="h3 text-center">FY 22-23 Current Project Portfolio</h2>
   <div class="row">
     <div class="col-lg-6">
@@ -13,21 +14,21 @@
     </div>
     <div class="col-lg-6 d-flex flex-column">
 
-      <div class="d-flex mt-auto">
+      <div class="d-flex mt-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button" onclick="setDdValue('Dept Delegation')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #666666;"></div>
         <p> Dept Delegation</p>
       </div>
-      <div class="d-flex">
+      <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button" onclick="setDdValue('CDT Oversight - Medium Risk')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #1a3e62;"></div>
         <p> CDT Oversight - Medium Risk</p>
       </div>
-      <div class="d-flex">
+      <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button" onclick="setDdValue('CDT Oversight - Low Risk')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #4590ca;"></div>
         <p> CDT Oversight - Low Risk</p>
       </div>
-      <div class="d-flex mb-auto">
+      <div class="d-flex mb-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button" onclick="setDdValue('CDT Oversight - High Risk')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #f2b23e;"></div>
-        <p> CDT Oversight - High Risk</p>
+        <p class="colot-primary-hover"> CDT Oversight - High Risk</p>
       </div>
       
     </div>
@@ -37,6 +38,12 @@
 
 
 <script>
+const setDdValue = (value) => {
+   const ddRisk = document.getElementById("ddRisk");
+   ddRisk.value = value;
+   ddRisk.dispatchEvent(new Event("change"));
+}
+
   const chartData = [
     {
         "Risk": "Dept Delegation",
@@ -93,12 +100,14 @@ const arcs = svg.selectAll("arc")
     .attr("class", "arc")
      // Make slices focusable
 
-
-
 arcs.append("path")
     .attr("d", arc)
     .attr("fill", d => d.data.color) // Use the specified color
     .attr("tabindex", "0")
+    
+    // update table when clicking on donut sections
+    .on("click", (event, d) => setDdValue(d.data.Risk))
+
     .on("mouseover focus", function (event, d) {
       d3.select(this).attr("fill", d.data.hovercolor);
         // Show tooltip with percentage
@@ -126,6 +135,7 @@ arcs.append("path")
         d3.select("#totalValueText").style("visibility", "visible");
         d3.select("#totalValue").style("visibility", "visible");
     });
+
 
 
 // Calculate the total value
