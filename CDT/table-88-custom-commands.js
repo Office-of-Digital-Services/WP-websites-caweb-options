@@ -5,6 +5,7 @@
     {
       data: "Department Name"
     },
+    { data: "Agency Name"},
     {
       data: "Project Name"
     },
@@ -18,35 +19,27 @@
       }
     },
     {
-      data: "Criticality Level"
-    },
-    {
-      data: "IPOR Health Rating",
-      title: "Status",
+      data: "Criticality Level",
       render: function (data, type) {
         if (type === "display") {
           return data
-            .replace(/Red/, "🔴 Red")
-            .replace(/Green/, "🟢 Green")
-            .replace(/Yellow/, "🟡 Yellow");
+            .replace(/High/, "🔴 Red")
+            .replace(/Low/, "🟢 Green")
+            .replace(/Medium/, "🟡 Yellow");
         }
         return data;
       }
     },
-
     {
       data: "Delegation/Risk",
       render: function (data, type) {
         if (type === "display") {
-          return data.replace(
-            /Dept Delegation/,
-            '<div class="height-30 width-30 m-r-sm" style="background-color: #666666;"></div> Dept Delegation'
-          );
+          return data.replace(/Dept Delegation/, "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #666666''></div> Dept Delegation")
+          .replace(/CDT Oversight - Medium Risk/, "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #1a3e62'></div> CDT Oversight - Medium Risk")
+          .replace(/CDT Oversight - Low Risk/, "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #4590ca'></div> CDT Oversight - Low Risk")
+          .replace(/CDT Oversight - High Risk/, "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #f2b23e'></div> CDT Oversight - High Risk");
         }
         return data;
       }
-    },
-    { data: "Agency Acronym" },
-    { data: "Description" },
-    { data: "Agency Name" }
+    }
   ]
