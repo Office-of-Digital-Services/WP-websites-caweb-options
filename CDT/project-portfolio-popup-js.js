@@ -6,15 +6,12 @@ function showMoreInfo(buttonElement) {
   let row = buttonElement.parent();
 
   let content = `
-  <dt>Department</dt><dd>${row.find(".column-1").html()}</dd>
-  <dt>Project Name</dt><dd>${row.find(".column-2").html()}</dd>
-  <dt>Total Project Cost</dt><dd>${row.find(".column-3").html()}</dd>
-  <dt>Criticality Level</dt><dd>${row.find(".column-4").html()}</dd>
-  <dt>Status</dt><dd>${row.find(".column-5").html()}</dd>
-    <dt>Delegation/Risk</dt><dd>${row.find(".column-6").html()}</dd>
-        <dt>Acronym</dt><dd>${row.find(".column-7").html()}</dd>
-        <dt>Agency</dt><dd>${row.find(".column-9").html()}</dd>
-        <dt>Description</dt><dd>${row.find(".column-8").html()}</dd>
+  <dt>Agency</dt><dd>${row.find(".column-1").html()}</dd>
+  <dt>Department</dt><dd>${row.find(".column-2").html()}</dd>
+  <dt>Project Name</dt><dd>${row.find(".column-3").html()}</dd>
+  <dt>Total Project Cost</dt><dd>${row.find(".column-4").html()}</dd>
+  <dt>Criticality Level</dt><dd>${row.find(".column-5").html()}</dd>
+  <dt>Delegation/Risk</dt><dd>${row.find(".column-6").html()}</dd>
   `;
 
   content +=
@@ -36,7 +33,7 @@ function showMoreInfo(buttonElement) {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // insert "More details" link
-  $("#funding_container td.column-2")
+  $("#funding_container td.column-1")
     .append('<p class="MoreInfoButton" tabindex="0">More details</p>')
     .click(function (e) {
       showMoreInfo($(this));

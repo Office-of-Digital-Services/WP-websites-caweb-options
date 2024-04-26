@@ -2,10 +2,10 @@
     boundary: true
   },
   columns: [
+    { data: "Agency Name"},
     {
       data: "Department Name"
     },
-    { data: "Agency Name"},
     {
       data: "Project Name"
     },
