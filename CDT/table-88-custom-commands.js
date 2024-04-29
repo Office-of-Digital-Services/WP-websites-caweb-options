@@ -22,7 +22,7 @@ let CustomCommands = {
       data: "Criticality Level",
       name: "Criticality Level",
       className: "column_criticality_level",
-      render: (data, type) => {
+      render: function (data, type) {
         if (type === "display") {
           return data
             .replace(
