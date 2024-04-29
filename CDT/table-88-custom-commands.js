@@ -26,20 +26,20 @@ let CustomCommands = {
         if (type === "display") {
           return data
             .replace(
-              /Delegated/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #666666''></div> Delegated"
+              /(Delegated)/,
+              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #666666''></div> $1"
             )
             .replace(
-              /Medium/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #1a3e62'></div> Medium"
+              /(Medium)/,
+              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #1a3e62'></div> $1"
             )
             .replace(
-              /Low/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #4590ca'></div> Low"
+              /(Low)/,
+              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #4590ca'></div> $1"
             )
             .replace(
-              /High/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #f2b23e'></div> High"
+              /(High)/,
+              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #f2b23e'></div> $1"
             );
         }
         return data;
