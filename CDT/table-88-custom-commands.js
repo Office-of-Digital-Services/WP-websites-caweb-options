@@ -50,6 +50,18 @@ let CustomCommands = {
       name: "Description",
       searchable: true,
       visible: false
+    },
+    {
+      data: "Condition",
+      render: function (data, type) {
+        if (type === "display") {
+          return data
+            .replace(/Red/, "🔴 Red")
+            .replace(/Green/, "🟢 Green")
+            .replace(/Yellow/, "🟡 Yellow");
+        }
+        return data;
+      }
     }
   ]
 
