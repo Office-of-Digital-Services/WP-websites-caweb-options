@@ -22,9 +22,10 @@ th.column-5 {
   display: block;
   position: absolute;
   left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   width: 50vw;
-  min-width: 400px;
-  max-width: 800px;
   border: 2px solid #888;
   z-index: 10;
   background: white;
