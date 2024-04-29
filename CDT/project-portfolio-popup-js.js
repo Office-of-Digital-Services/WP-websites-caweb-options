@@ -3,15 +3,19 @@
 
 // display popover
 function showMoreInfo(buttonElement) {
+
+  let table = $('#tablepress-88').DataTable();
   let row = buttonElement.parent();
+  let rowIndex = $(buttonElement).closest('tr').index();
+  let rowData = table.row(rowIndex).data();
 
   let content = `
-  <dt>Agency</dt><dd>${row.find(".column-1").html()}</dd>
-  <dt>Department</dt><dd>${row.find(".column-2").html()}</dd>
-  <dt>Project Name</dt><dd>${row.find(".column-3").html()}</dd>
-  <dt>Total Project Cost</dt><dd>${row.find(".column-4").html()}</dd>
-  <dt>Criticality Level</dt><dd>${row.find(".column-5").html()}</dd>
-  <dt>Delegation/Risk</dt><dd>${row.find(".column-6").html()}</dd>
+  <dt>Agency</dt><dd>${rowData["Agency Name"]}</dd>
+  <dt>Department</dt><dd>${rowData["Department Name"]}</dd>
+  <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
+  <dt>Total Project Cost</dt><dd>${rowData["Total Cost"]}</dd>
+  <dt>Criticality Level</dt><dd>${table.cell(rowIndex, 'Criticality Level:name').render('display')}</dd>
+ <dt>Description</dt><dd>${rowData.Description}</dd>
   `;
 
   content +=

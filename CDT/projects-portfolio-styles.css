@@ -1,13 +1,17 @@
-td.column-5 {
-    white-space: nowrap;
-}
+ 
 
-th.column-4 {
+/* Criticality Level */
+th.column-5 {
     white-space: break-spaces
 }
 
-.column-8 {
+/* description */
+.column-6 {
     display: none;
+}
+
+.column_criticality_level {
+    white-space: nowrap;
 }
 
 #fundingPopover .MoreInfoButton {
@@ -44,3 +48,4 @@ div.dataTables_wrapper {
   display:none;
 }
 */
+ 

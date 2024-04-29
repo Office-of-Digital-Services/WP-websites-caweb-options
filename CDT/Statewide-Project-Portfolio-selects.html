@@ -1,33 +1,16 @@
-
 <p>Learn more about these projects. You can sort, filter and search by Agency, Department, Project name and Criticality.
     The Details link will take you to more information about an individual project.</p>
 <div class="row">
     <div class="col-md-4">
-        <label for="ddStatus" class="mb-1 sr-only">Select status ratings</label>
-        <select id="ddStatus" onchange="$('#tablepress-88').DataTable().column(4).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Status filter">
-            <option selected="selected" value="">Show All Status</option>
-            <option value="Green">🟢 Green</option>
-            <option value="Yellow">🟡 Yellow</option>
-            <option value="Red">🔴 Red</option>
-        </select>
-    </div>
-    <div class="col-md-4">
-        <label for="ddCriticality" class="mb-1  sr-only">Select criticality ratings</label>
-        <select id="ddCriticality" onchange="$('#tablepress-88').DataTable().column(3).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Criticality ratings filter">
-            <option selected="selected" value="">Show all criticality ratings</option>
-            <option value="Low">🟢 Low</option>
-            <option value="Medium">🟡 Medium</option>
-            <option value="High">🔴 High</option>
-        </select>
-    </div>
-    <div class="col-md-4">
-        <label for="ddRisk" class="mb-1 sr-only">Select delegation/risk</label>
-        <select id="ddRisk" onchange="$('#tablepress-88').DataTable().column(5).search(this.value).draw();" class="form-select form-select-lg mb-3" aria-label="Delegation or Risk filter">
-            <option selected="selected" value="">Show All Delegation/Risk</option>
-            <option>Dept Delegation</option>
-            <option value="CDT Oversight - High Risk">CDT Oversight - High Risk</option>
-            <option value="CDT Oversight - Medium Risk">CDT Oversight - Medium Risk</option>
-            <option value="CDT Oversight - Low Risk">CDT Oversight - Low Risk</option>
+        <label for="ddRisk" class="mb-1 sr-only">Select criticality level</label>
+        <select id="ddRisk"
+            onchange="$('#tablepress-88').DataTable().column('Criticality Level:name').search(this.value).draw();"
+            class="form-select form-select-lg mb-3" aria-label="Delegation or Risk filter">
+            <option selected="selected" value="">Show all criticality levels</option>
+            <option value="Delegated">Delegated</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
         </select>
     </div>
 </div>
