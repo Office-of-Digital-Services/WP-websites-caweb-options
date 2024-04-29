@@ -31,7 +31,7 @@
     "no-useless-return": "warn",
     "no-var": "warn",
     "operator-assignment": "warn",
-    "prefer-arrow-callback": "warn",
+    "prefer-arrow-callback": "off",
     "prefer-template": "warn",
     "semi": "warn",
     "yoda": "warn",

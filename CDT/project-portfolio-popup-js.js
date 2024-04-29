@@ -27,17 +27,17 @@ function showMoreInfo(buttonElement) {
   row.append('<div id="fundingPopover"></div>');
   $("#fundingPopover").append(content); // insert new content
 
-  jQuery("button.btn").click(() => {
+  jQuery("button.btn").click(function () {
     $("#fundingPopover").remove();
   });
 
   // don't close when user clicks on popover content
-  jQuery("#fundingPopover").click(ev => {
+  jQuery("#fundingPopover").click(function (ev) {
     ev.stopPropagation();
   });
 }
 
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", function (event) {
   // insert "More details" link
   $("#funding_container td.column-3")
     .append('<p class="MoreInfoButton" tabindex="0">More details</p>')
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 
 // close popover when clicking anywhere
-window.onclick = () => {
+window.onclick = function () {
   $("#fundingPopover").remove();
 };
 
