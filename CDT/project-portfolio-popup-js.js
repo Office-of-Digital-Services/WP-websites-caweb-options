@@ -16,7 +16,6 @@ function showMoreInfo(buttonElement) {
 
   let content = `
   <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
-  <dt>Criticality Level</dt><dd>${table.cell(rowIndex, "Criticality Level:name").render("display")}</dd>
   <dt>Description</dt><dd>${rowData.Description}</dd>
   `;
 
