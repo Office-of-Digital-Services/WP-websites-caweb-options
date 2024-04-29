@@ -5,7 +5,7 @@
     cursor: pointer;
   }
 </style>
-<div class="container mx-auto p-b-lg">
+<div class="container mx-auto">
   <h1 class="m-b-md">Technology Projects Deliver Outcomes</h1>
   <p>
     California is a leader in investing and the delivery of emerging technologies, designing people-centric solutions and
@@ -32,25 +32,26 @@
       <div id="chart"></div>
     </div>
     <div class="col-lg-7 d-flex flex-column">
-      <div class="d-flex mt-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
-        role="button" onclick="setDdValue('Dept Delegation')">
+      <h3 class="h4 mt-auto m-y">Criticality level</h3>
+      <div class="d-flex  cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
+        role="button" onclick="setDdValue('Delegated')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #666666;"></div>
-        <p>Dept Delegation</p>
+        <p><a href="#ddRisk" class="gray-900">Delegated</a></p>
       </div>
       <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button"
-        onclick="setDdValue('CDT Oversight - Medium Risk')">
+        onclick="setDdValue('Medium')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #1a3e62;"></div>
-        <p>CDT Oversight - Medium Criticality</p>
+        <p><a href="#ddRisk" class="gray-900">Medium</a></p>
       </div>
       <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button"
-        onclick="setDdValue('CDT Oversight - Low Risk')">
+        onclick="setDdValue('Low')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #4590ca;"></div>
-        <p>CDT Oversight - Low Criticality</p>
+        <p><a href="#ddRisk" class="gray-900">Low</a></p>
       </div>
       <div class="d-flex mb-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
-        role="button" onclick="setDdValue('CDT Oversight - High Risk')">
+        role="button" onclick="setDdValue('High')">
         <div class="height-30 width-30 m-r-sm" style="background-color: #f2b23e;"></div>
-        <p class="colot-primary-hover">CDT Oversight - High Criticality</p>
+        <p class="colot-primary-hover"><a href="#ddRisk" class="gray-900">High</a></p>
       </div>
     </div>
   </div>
@@ -58,7 +59,7 @@
   <div class="row">
     <div class="col-lg-10">
       <h2 class="h3 text-center m-b-0 m-t">
-          <a href="https://cdtcdev.sites.ca.gov/?page_id=382810&preview=1&_ppp=604e9130c3">Project Outcomes 2019-2023 Compared to Industry</a>
+       Project Outcomes 2019-2023 Compared to Industry
       </h2>
       <p class="text-center m-b-0 font-size-13">The bar chart shows a comparison of project outcomes to industry benchmarks for the period shown. In 2023 California
       implemented N information technology projects benefiting the State.</p>
@@ -81,6 +82,7 @@
         <p class="font-size-13 text-center">The CHAOS Report, or Comprehensive Human Appraisal for Originating Software, is a
           study by The Standish Group that
           examines project management best practices and the success rates of IT projects.</p>
+        <p class="text-center"><a href="https://cdtcdev.sites.ca.gov/?page_id=382810&preview=1&_ppp=604e9130c3" class="btn btn-default">More Project Outcomes data</a></p>   
     </div>
   </div>
 </div>
@@ -95,25 +97,25 @@
 
   const chartData = [
     {
-      "Risk": "Dept Delegation",
+      "Risk": "Delegated",
       "Value": 194,
       "color": "#666666", // gray
       "hovercolor": "#595959"
     },
     {
-      "Risk": "CDT Oversight - Medium Risk",
+      "Risk": "Medium",
       "Value": 73,
       "color": "#1a3e62", // cdt blue
       "hovercolor": "#17385b"
     },
     {
-      "Risk": "CDT Oversight - Low Risk",
+      "Risk": "Low",
       "Value": 45,
       "color": "#4590ca", // light blue
       "hovercolor": "#3786C3"
     },
     {
-      "Risk": "CDT Oversight - High Risk",
+      "Risk": "High",
       "Value": 16,
       "color": "#f2b23e", // yellow
       "hovercolor": "#C4840E"
