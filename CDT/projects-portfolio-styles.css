@@ -3,11 +3,6 @@ th.column-5 {
   white-space: break-spaces;
 }
 
-/* description */
-.column-6 {
-  display: none;
-}
-
 .column_criticality_level {
   white-space: nowrap;
 }
