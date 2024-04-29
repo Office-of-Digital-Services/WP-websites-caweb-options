@@ -13,7 +13,14 @@ let CustomCommands = {
       data: "Department Name"
     },
     {
-      data: "Project Name"
+      data: "Project Name",
+      render: (data, type, row) => {
+        if (type === "display") {
+          // Customize the rendered content (e.g., create a button with the project title)
+          return `${data}<br/><br/><button class="MoreInfoButton" data-row-id="${row.id}">More Details</button>`;
+        }
+        return data; // For other types (sorting, filtering, etc.), return the raw data
+      }
     },
     {
       data: "Total Cost"
@@ -22,7 +29,7 @@ let CustomCommands = {
       data: "Criticality Level",
       name: "Criticality Level",
       className: "column_criticality_level",
-      render: function (data, type) {
+      render: (data, type) => {
         if (type === "display") {
           return data
             .replace(

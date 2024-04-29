@@ -9,12 +9,9 @@ function showMoreInfo(buttonElement) {
   let rowData = table.row(rowIndex).data();
 
   let content = `
-  <dt>Agency</dt><dd>${rowData["Agency Name"]}</dd>
-  <dt>Department</dt><dd>${rowData["Department Name"]}</dd>
   <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
-  <dt>Total Project Cost</dt><dd>${rowData["Total Cost"]}</dd>
   <dt>Criticality Level</dt><dd>${table.cell(rowIndex, "Criticality Level:name").render("display")}</dd>
- <dt>Description</dt><dd>${rowData.Description}</dd>
+  <dt>Description</dt><dd>${rowData.Description}</dd>
   `;
 
   content +=

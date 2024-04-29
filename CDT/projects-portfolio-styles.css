@@ -12,10 +12,6 @@ th.column-5 {
   white-space: nowrap;
 }
 
-#fundingPopover .MoreInfoButton {
-  display: none;
-}
-
 .MoreInfoButton {
   text-decoration: underline dotted 1px;
   color: blue;
