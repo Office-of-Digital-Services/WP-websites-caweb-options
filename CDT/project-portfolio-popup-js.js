@@ -56,7 +56,7 @@ window.onclick = () => {
 };
 
 // close popover when user hits esc
-document.body.onkeydown = function (e) {
+document.body.onkeydown = function () {
   if (event.code === "Escape") {
     $("#fundingPopover").remove();
   }

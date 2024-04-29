@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 let CustomCommands = {
   //Place this in "Custom Commands"
   // https://cdtcdev.sites.ca.gov/wp-admin/admin.php?page=tablepress&action=edit&table_id=88
