@@ -3,10 +3,9 @@
 
 // display popover
 function showMoreInfo(buttonElement) {
-
-  let table = $('#tablepress-88').DataTable();
+  let table = $("#tablepress-88").DataTable();
   let row = buttonElement.parent();
-  let rowIndex = $(buttonElement).closest('tr').index();
+  let rowIndex = $(buttonElement).closest("tr").index();
   let rowData = table.row(rowIndex).data();
 
   let content = `
@@ -14,7 +13,7 @@ function showMoreInfo(buttonElement) {
   <dt>Department</dt><dd>${rowData["Department Name"]}</dd>
   <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
   <dt>Total Project Cost</dt><dd>${rowData["Total Cost"]}</dd>
-  <dt>Criticality Level</dt><dd>${table.cell(rowIndex, 'Criticality Level:name').render('display')}</dd>
+  <dt>Criticality Level</dt><dd>${table.cell(rowIndex, "Criticality Level:name").render("display")}</dd>
  <dt>Description</dt><dd>${rowData.Description}</dd>
   `;
 
@@ -30,12 +29,12 @@ function showMoreInfo(buttonElement) {
   });
 
   // don't close when user clicks on popover content
-  jQuery("#fundingPopover").click((ev) => {
+  jQuery("#fundingPopover").click(ev => {
     ev.stopPropagation();
   });
 }
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", event => {
   // insert "More details" link
   $("#funding_container td.column-1")
     .append('<p class="MoreInfoButton" tabindex="0">More details</p>')

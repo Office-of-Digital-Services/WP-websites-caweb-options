@@ -1,17 +1,22 @@
-<p>Learn more about these projects. You can sort, filter and search by Agency, Department, Project name and Criticality.
-    The Details link will take you to more information about an individual project.</p>
+<p>
+  Learn more about these projects. You can sort, filter and search by Agency,
+  Department, Project name and Criticality. The Details link will take you to
+  more information about an individual project.
+</p>
 <div class="row">
-    <div class="col-md-4">
-        <label for="ddRisk" class="mb-1 sr-only">Select criticality level</label>
-        <select id="ddRisk"
-            onchange="$('#tablepress-88').DataTable().column('Criticality Level:name').search(this.value).draw();"
-            class="form-select form-select-lg mb-3" aria-label="Delegation or Risk filter">
-            <option selected="selected" value="">Show all criticality levels</option>
-            <option value="Delegated">Delegated</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select>
-    </div>
+  <div class="col-md-4">
+    <label for="ddRisk" class="mb-1 sr-only">Select criticality level</label>
+    <select
+      id="ddRisk"
+      onchange="$('#tablepress-88').DataTable().column('Criticality Level:name').search(this.value).draw();"
+      class="form-select form-select-lg mb-3"
+      aria-label="Delegation or Risk filter">
+      <option selected="selected" value="">Show all criticality levels</option>
+      <option value="Delegated">Delegated</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+  </div>
 </div>
 <div id="funding_container">[table id=88 /]</div>

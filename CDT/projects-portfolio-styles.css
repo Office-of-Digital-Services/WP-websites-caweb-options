@@ -1,46 +1,46 @@
- 
-
 /* Criticality Level */
 th.column-5 {
-    white-space: break-spaces
+  white-space: break-spaces;
 }
 
 /* description */
 .column-6 {
-    display: none;
+  display: none;
 }
 
 .column_criticality_level {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 #fundingPopover .MoreInfoButton {
-    display: none;
+  display: none;
 }
 
 .MoreInfoButton {
-    text-decoration: underline dotted 1px;
-    color: blue;
-    margin-top: 0.8em;
-    cursor: pointer;
+  text-decoration: underline dotted 1px;
+  color: blue;
+  margin-top: 0.8em;
+  cursor: pointer;
 }
 
 #fundingPopover {
-    display: block;
-    position: absolute;
-    left: 0;
-    width: 50vw;
-    min-width: 400px;
-    max-width: 800px;
-    border: 2px solid #888;
-    z-index: 10;
-    background: white;
-    padding: .6em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 50vw;
+  min-width: 400px;
+  max-width: 800px;
+  border: 2px solid #888;
+  z-index: 10;
+  background: white;
+  padding: 0.6em;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 div.dataTables_wrapper {
-    overflow-x: visible;
+  overflow-x: visible;
 }
 
 /* Fix PDF icon script conflict 
@@ -48,4 +48,3 @@ div.dataTables_wrapper {
   display:none;
 }
 */
- 

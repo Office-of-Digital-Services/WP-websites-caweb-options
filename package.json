@@ -1,0 +1,17 @@
+{
+  "name": "caweb_cdt_wordpress",
+  "version": "0.0.1",
+  "description": "This is the rep for JS and CSS of CAWeb options",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Office-of-Digital-Services/WP-websites-caweb-options.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "8.56.0",
+    "eslint-plugin-jsdoc": "^48.2.0",
+    "prettier": "^3.0.3"
+  }
+}
