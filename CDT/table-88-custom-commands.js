@@ -49,8 +49,7 @@ let CustomCommands = {
       data: "Description",
       name: "Description",
       searchable: true,
-      visible: false,
-      className: "column_description"
+      visible: false
     }
   ]
 
