@@ -33,7 +33,7 @@ function showMoreInfo(buttonElement) {
 
 document.addEventListener("DOMContentLoaded", event => {
   // insert "More details" link
-  $("#funding_container td.column-1")
+  $("#funding_container td.column-3")
     .append('<p class="MoreInfoButton" tabindex="0">More details</p>')
     .click(function (e) {
       showMoreInfo($(this));
