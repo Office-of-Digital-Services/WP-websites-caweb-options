@@ -5,7 +5,13 @@
 function showMoreInfo(buttonElement) {
   let table = $("#tablepress-88").DataTable();
   let row = buttonElement.parent();
-  let rowIndex = $(buttonElement).closest("tr").index();
+
+  //checking the "row-" class
+  let rowIndex =
+    $(buttonElement)
+      .closest("tr")
+      .attr("class")
+      .match(/row-(\d+)/)[1] - 2;
   let rowData = table.row(rowIndex).data();
 
   let content = `
