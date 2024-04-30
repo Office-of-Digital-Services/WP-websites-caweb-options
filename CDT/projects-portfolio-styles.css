@@ -29,7 +29,7 @@ th.column-5 {
   border: 2px solid #888;
   z-index: 10;
   background: white;
-  padding: 1em;
+  padding: 0.6em;
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -44,3 +44,4 @@ div.dataTables_wrapper {
   display:none;
 }
 */
+
