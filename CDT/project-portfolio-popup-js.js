@@ -3,7 +3,7 @@
 
 // display popover
 function showMoreInfo(buttonElement) {
-  let table = $("#tablepress-88").DataTable();
+  let table = $("#tablepress-86").DataTable();
   let row = buttonElement.parent();
 
   //checking the "row-" class

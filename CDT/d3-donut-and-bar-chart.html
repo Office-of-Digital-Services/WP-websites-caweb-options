@@ -63,7 +63,7 @@
   </div>
   <div class="row">
     <div class="col-lg-10">
-     <p>Learn more about <a href="https://cdtcdev.sites.ca.gov/statewide-project-outcomes/">statewide project outcomes</a>.</p>
+     <p>Learn more about <a href="/statewide-project-outcomes/">statewide project outcomes</a>.</p>
     </div>
   </div>
  
@@ -80,25 +80,25 @@
   const chartData = [
     {
       "Risk": "High",
-      "Value": 16,
+      "Value": 18,
       "color": "#f2b23e", // yellow
       "hovercolor": "#C4840E"
     },
     {
       "Risk": "Medium",
-      "Value": 75,
+      "Value": 68,
       "color": "#1a3e62", // cdt blue
       "hovercolor": "#17385b"
     },
     {
       "Risk": "Low",
-      "Value": 45,
+      "Value": 40,
       "color": "#4590ca", // light blue
       "hovercolor": "#3786C3"
     },
     {
       "Risk": "Delegated",
-      "Value": 194,
+      "Value": 139,
       "color": "#666666", // gray
       "hovercolor": "#595959"
     }
@@ -193,8 +193,8 @@
 
   // Add labels outside of the donut
   const labelArc = d3.arc()
-    .innerRadius(radius * .8) // Adjust inner radius for label position
-    .outerRadius(radius * 1.1);
+    .innerRadius(radius * .79) // Adjust inner radius for label position
+    .outerRadius(radius * 1.09);
 
   // Labels next to the slices
   arcs.append("text")
