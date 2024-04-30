@@ -8,7 +8,7 @@
 <div class="container mx-auto p-b-md">
   <div class="row">
     <div class="col-md-10">
-      <h1 class="m-b-md">Statewide Project Portfolio</h1>
+      <h1 class="m-b-md">Statewide IT Project Portfolio</h1>
       <p class="lead">
         California is a leader in investing and the delivery of emerging technologies, designing people-centric solutions and
         securing the state’s vital assets.</p>
@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-lg-10">
       <h2 class="h3 m-b-0 m-t">
-        FY 23-24 Current Project Portfolio
+        FY 23-24 Current IT Project Portfolio
       </h2>
       <p class="font-size-13">
         This pie chart shows all active information technology projects in the state project portfolio in planning or execution.
@@ -79,14 +79,14 @@
 
   const chartData = [
     {
-      "Risk": "Delegated",
-      "Value": 194,
-      "color": "#666666", // gray
-      "hovercolor": "#595959"
+      "Risk": "High",
+      "Value": 16,
+      "color": "#f2b23e", // yellow
+      "hovercolor": "#C4840E"
     },
     {
       "Risk": "Medium",
-      "Value": 73,
+      "Value": 75,
       "color": "#1a3e62", // cdt blue
       "hovercolor": "#17385b"
     },
@@ -97,10 +97,10 @@
       "hovercolor": "#3786C3"
     },
     {
-      "Risk": "High",
-      "Value": 16,
-      "color": "#f2b23e", // yellow
-      "hovercolor": "#C4840E"
+      "Risk": "Delegated",
+      "Value": 194,
+      "color": "#666666", // gray
+      "hovercolor": "#595959"
     }
   ];
 
@@ -182,7 +182,7 @@
     .attr("text-anchor", "middle")
     .attr("dy", "-1.5em")
     .style("font-size", ".85em")
-    .text(`Total projects`);
+    .text(`Total IT Projects`);
 
   svg.append("text")
     .attr("id", "totalValue")
