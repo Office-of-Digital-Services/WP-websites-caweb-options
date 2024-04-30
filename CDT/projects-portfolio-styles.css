@@ -1,9 +1,17 @@
 /* Criticality Level */
+.dataTables_scroll .tablepress {
+  font-size: 1.1rem;
+}
+
 th.column-5 {
   white-space: break-spaces;
 }
 
 .column_criticality_level {
+  white-space: nowrap;
+}
+
+.column_condition {
   white-space: nowrap;
 }
 
