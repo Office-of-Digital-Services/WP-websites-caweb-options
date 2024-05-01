@@ -1,7 +1,7 @@
-/* eslint-disable jsdoc/require-jsdoc */
-// Note: tablepress columns classnames start at 1, DataTable starts at 0.
-
-// display popover
+/**
+ * display popover
+ * @param {JQuery<HTMLElement>} buttonElement
+ */
 function showMoreInfo(buttonElement) {
   let table = $("#tablepress-86").DataTable();
   let row = buttonElement.parent();
@@ -66,10 +66,13 @@ document.body.onkeydown = function () {
   }
 };
 
+/**
+ * Put this in the "Custom Commands" field in the table settings
+ * @example
+ * ...TablePressCustomCommands()
+ */
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
-  //Place this in "Custom Commands"
-  // https://cdt.ca.gov/wp-admin/admin.php?page=tablepress&action=edit&table_id=86
   return {
     search: {
       exact: true,
