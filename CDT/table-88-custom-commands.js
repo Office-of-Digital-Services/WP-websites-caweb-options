@@ -16,7 +16,26 @@ let CustomCommands = {
       data: "Project Name"
     },
     {
-      data: "Total Cost"
+      data: "Total Cost",
+      render: function (data, type) {
+        if (type === "display") {
+          if (data) {
+            return Number(data).toLocaleString(navigator.language || "en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 0
+            });
+          } else {
+            return "<em>N/A</em>";
+          }
+        } else if (type === "sort") {
+          if (!data) {
+            return "-1";
+          }
+        }
+
+        return data;
+      }
     },
     {
       data: "Criticality Level",
