@@ -17,18 +17,16 @@ let CustomCommands = {
     },
     {
       data: "Total Cost",
-      defaultContent: "<em>N/a</em>",
+      defaultContent: "<em>N/A</em>",
       render: function (data, type) {
         if (type === "display") {
-          if (data) {
-            return Number(data).toLocaleString(navigator.language || "en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 0
-            });
-          } else {
-            return null; //shows defaultContent
-          }
+          if (!data) return null; //shows defaultContent
+
+          return Number(data).toLocaleString(navigator.language || "en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0
+          });
         } else if (type === "sort") {
           if (!data) {
             return "-1"; //puts N/A before $0
@@ -74,12 +72,26 @@ let CustomCommands = {
     {
       data: "Condition",
       className: "column_condition",
+      defaultContent: "<em>N/A</em>",
       render: function (data, type) {
         if (type === "display") {
+          if (!data) return null; //shows defaultContent
+
           return data
             .replace(/Red/, "🔴 Red")
             .replace(/Green/, "🟢 Green")
             .replace(/Yellow/, "🟡 Yellow");
+        } else if (type === "sort") {
+          switch (data) {
+            case "Red":
+              return "3";
+            case "Yellow":
+              return "2";
+            case "Green":
+              return "1";
+            default:
+              return "-1";
+          }
         }
         return data;
       }
