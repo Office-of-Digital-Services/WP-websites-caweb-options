@@ -73,7 +73,7 @@ document.body.onkeydown = function () {
  */
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
-  return {
+  return /** @type {import("datatables.net").Config} */ ({
     search: {
       exact: true,
       smart: false
@@ -163,5 +163,5 @@ function TablePressCustomCommands() {
         }
       }
     ]
-  };
+  });
 }
