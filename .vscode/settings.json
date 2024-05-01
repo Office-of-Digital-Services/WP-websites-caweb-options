@@ -6,7 +6,11 @@
   },
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "formattingToggle.affects": ["editor.formatOnSave"],
+  "formattingToggle.affects": [
+    "editor.formatOnPaste",
+    "editor.formatOnSave",
+    "editor.formatOnType"
+  ],
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
