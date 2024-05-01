@@ -59,6 +59,17 @@ let CustomCommands = {
               /(High)/,
               "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #f2b23e'></div> $1"
             );
+        } else if (type === "sort") {
+          switch (data) {
+            case "High":
+              return "3";
+            case "Medium":
+              return "2";
+            case "Low":
+              return "1";
+            default:
+              return "-1";
+          }
         }
         return data;
       }
