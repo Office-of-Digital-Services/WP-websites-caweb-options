@@ -41,35 +41,19 @@ let CustomCommands = {
       name: "Criticality Level",
       className: "column_criticality_level",
       render: function (data, type) {
+        const values = {
+          High: { sort: 3, color: "#f2b23e" },
+          Medium: { sort: 2, color: "#1a3e62" },
+          Low: { sort: 1, color: "#4590ca" },
+          Delegated: { sort: 0, color: "#666666" }
+        };
         if (type === "display") {
-          return data
-            .replace(
-              /(Delegated)/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #666666''></div> $1"
-            )
-            .replace(
-              /(Medium)/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #1a3e62'></div> $1"
-            )
-            .replace(
-              /(Low)/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #4590ca'></div> $1"
-            )
-            .replace(
-              /(High)/,
-              "<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: #f2b23e'></div> $1"
-            );
+          return `<div class='mt-1 float-start height-20 width-20 m-r-sm' style='background-color: ${values[data].color}'></div> ${data}`;
         } else if (type === "sort") {
-          switch (data) {
-            case "High":
-              return "3";
-            case "Medium":
-              return "2";
-            case "Low":
-              return "1";
-            default:
-              return "-1";
-          }
+          const found = values[data];
+          if (found) {
+            return found.sort.toString();
+          } else return "-1";
         }
         return data;
       }
