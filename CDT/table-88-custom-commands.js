@@ -17,6 +17,7 @@ let CustomCommands = {
     },
     {
       data: "Total Cost",
+      defaultContent: "<em>N/a</em>",
       render: function (data, type) {
         if (type === "display") {
           if (data) {
@@ -26,11 +27,11 @@ let CustomCommands = {
               minimumFractionDigits: 0
             });
           } else {
-            return "<em>N/A</em>";
+            return null; //shows defaultContent
           }
         } else if (type === "sort") {
           if (!data) {
-            return "-1";
+            return "-1"; //puts N/A before $0
           }
         }
 
