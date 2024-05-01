@@ -1,13 +1,23 @@
-<h2 class="m-b-md">Active projects list</h2>
-<p class="col-lg-10">The list below contains the portfolio of active State information technology projects across all agencies and departments in either planning or execution. Active projects updated monthly.</p>
+<h2 class="m-b-md">Active IT Projects List</h2>
+<p class="col-lg-10">
+  The list below contains the portfolio of active State information technology
+  projects across all agencies and departments in either planning or execution.
+  Active IT projects updated monthly.
+</p>
 <div class="row">
-<div class="col-md-4"><label class="mb-1 sr-only" for="ddRisk">Select criticality level</label>
-<select id="ddRisk" class="form-select form-select-lg mb-3" onchange="$('#tablepress-86').DataTable().column('Criticality Level:name').search(this.value).draw();" aria-label="Delegation or Risk filter">
-<option selected="selected" value="">Show all criticality levels</option>
-<option value="Delegated">Delegated</option>
-<option value="High">High</option>
-<option value="Medium">Medium</option>
-<option value="Low">Low</option>
-</select></div>
+  <div class="col-md-4">
+    <label class="mb-1 sr-only" for="ddRisk">Select criticality level</label>
+    <select
+      id="ddRisk"
+      class="form-select form-select-lg mb-3"
+      onchange="$('#tablepress-86').DataTable().column('Criticality Level:name').search(this.value).draw();"
+      aria-label="Delegation or Risk filter">
+      <option selected="selected" value="">Show all criticality levels</option>
+      <option value="Delegated">Delegated</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+  </div>
 </div>
 <div id="funding_container">[table id=86 /]</div>
