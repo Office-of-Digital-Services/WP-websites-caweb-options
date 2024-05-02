@@ -12,12 +12,9 @@ function removePopover() {
  * @param {JQuery<HTMLElement>} buttonElement
  */
 function showMoreInfo(buttonElement) {
-  let table = $("#tablepress-86").DataTable();
-  let row = buttonElement.parent();
+  const table = $("#tablepress-86").DataTable();
 
-  let rowIndex = Number(buttonElement.data("row-id"));
-
-  let rowData = table.row(rowIndex).data();
+  const rowData = table.row(Number(buttonElement.data("row-id"))).data();
 
   const content = `
   <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
@@ -26,15 +23,17 @@ function showMoreInfo(buttonElement) {
   `;
 
   removePopover();
-  row.append('<div id="fundingPopover"></div>');
-  $("#fundingPopover").append(content); // insert new content
+  buttonElement.parent().append('<div id="fundingPopover"></div>');
 
-  $("button.btn").on("click", removePopover);
+  $("#fundingPopover")
+    .append(content) // insert new content
 
-  // don't close when user clicks on popover content
-  $("#fundingPopover").on("click", function (ev) {
-    ev.stopPropagation();
-  });
+    // don't close when user clicks on popover content
+    .on("click", function (e) {
+      e.stopPropagation();
+    });
+
+  $("#fundingPopover > button").on("click", removePopover);
 }
 
 /**
