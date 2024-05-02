@@ -41,43 +41,12 @@ function showMoreInfo(target) {
   );
 }
 
-/**
- * @param {HTMLElement} target
- * @param {Event} e
- */
-function showHandler(target, e) {
-  showMoreInfo(target);
-  e.preventDefault();
-  e.stopPropagation(); // stop click propogation
-}
-
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape") removePopover();
 });
 
 // close popover when clicking anywhere
 window.addEventListener("click", removePopover);
-
-/**
- *
- * @param {Event} e
- */
-function clickAndKeyHandler(e) {
-  if (
-    e.target instanceof HTMLElement &&
-    e.target.classList.contains("MoreInfoButton")
-  )
-    showHandler(e.target, e);
-}
-
-document.body.addEventListener("click", clickAndKeyHandler);
-
-// Event delegation for keydown event
-document.body.addEventListener("keydown", function (e) {
-  if (e.key === "Enter" || e.key === " ") {
-    clickAndKeyHandler(e);
-  }
-});
 
 /**
  * Put this in the "Custom Commands" field in the table settings
@@ -105,6 +74,18 @@ function TablePressCustomCommands() {
               .attr("tabindex", "0")
               .data("row-id", row)
               .text("More details")
+              .on("click", function (e) {
+                showMoreInfo(/** @type {HTMLElement} */ (e.target));
+                e.preventDefault();
+                e.stopPropagation(); // stop click propogation
+              })
+              .on("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                  showMoreInfo(/** @type {HTMLElement} */ (e.target));
+                  e.preventDefault();
+                  e.stopPropagation(); // stop click propogation
+                }
+              })
           );
         }
       },
