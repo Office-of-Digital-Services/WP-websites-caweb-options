@@ -7,14 +7,8 @@ function showMoreInfo(buttonElement) {
   let table = $("#tablepress-86").DataTable();
   let row = buttonElement.parent();
 
-  //checking the "row-" class
-  let rowIndex =
-    Number(
-      $(buttonElement)
-        .closest("tr")
-        .attr("class")
-        .match(/row-(\d+)/)[1]
-    ) - 2;
+  let rowIndex = Number(buttonElement.data("row-id"));
+
   let rowData = table.row(rowIndex).data();
 
   const content = `
@@ -37,31 +31,16 @@ function showMoreInfo(buttonElement) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  /**
-   *
-   * @param {JQuery<HTMLElement>} $element
-   * @param {JQuery.Event} e
-   */
-  function showHandler($element, e) {
-    showMoreInfo($element);
-    e.preventDefault();
-    e.stopPropagation(); // stop click propogation
-  }
-
-  // insert "More details" link
-  $("#funding_container td.column-3")
-    .append('<p class="MoreInfoButton" tabindex="0">More details</p>')
-    .on("click", function (e) {
-      showHandler($(this), e);
-    })
-    .on("keydown", function (e) {
-      if (e.key === " " || e.key === "Enter") {
-        // " " is "Space"
-        showHandler($(this), e);
-      }
-    });
-});
+/**
+ *
+ * @param {JQuery<HTMLElement>} $element
+ * @param {Event} e
+ */
+function showHandler($element, e) {
+  showMoreInfo($element);
+  e.preventDefault();
+  e.stopPropagation(); // stop click propogation
+}
 
 // close popover when clicking anywhere
 
@@ -73,6 +52,25 @@ window.addEventListener("keydown", function (e) {
 
 window.addEventListener("click", function () {
   $("#fundingPopover").remove();
+});
+
+document.body.addEventListener("click", function (e) {
+  if (
+    e.target instanceof HTMLElement &&
+    e.target.classList.contains("MoreInfoButton")
+  )
+    showHandler($(e.target), e);
+});
+
+// Event delegation for keydown event
+document.body.addEventListener("keydown", function (e) {
+  if (
+    e.target instanceof HTMLElement &&
+    e.target.classList.contains("MoreInfoButton")
+  )
+    if (e.key === "Enter" || e.key === " ") {
+      showHandler($(e.target), e);
+    }
 });
 
 /**
@@ -93,7 +91,14 @@ function TablePressCustomCommands() {
         data: "Department Name"
       },
       {
-        data: "Project Name"
+        data: "Project Name",
+        render: function (data, type, row, meta) {
+          if (type === "display") {
+            return `${data}<p class="MoreInfoButton" tabindex="0" data-row-id="${meta.row}">More details</p>`;
+          }
+
+          return data;
+        }
       },
       {
         data: "Total Cost",
