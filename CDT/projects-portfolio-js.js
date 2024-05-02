@@ -1,4 +1,12 @@
 //@ts-check
+
+/**
+ * Removes the popover, if it's there
+ */
+function removePopover() {
+  $("#fundingPopover").remove();
+}
+
 /**
  * display popover
  * @param {JQuery<HTMLElement>} buttonElement
@@ -17,13 +25,11 @@ function showMoreInfo(buttonElement) {
   <button class="btn btn-secondary wp-block-button__link">Close</button>
   `;
 
-  $("#fundingPopover").remove();
+  removePopover();
   row.append('<div id="fundingPopover"></div>');
   $("#fundingPopover").append(content); // insert new content
 
-  $("button.btn").on("click", function () {
-    $("#fundingPopover").remove();
-  });
+  $("button.btn").on("click", removePopover);
 
   // don't close when user clicks on popover content
   $("#fundingPopover").on("click", function (ev) {
@@ -45,32 +51,30 @@ function showHandler($element, e) {
 // close popover when clicking anywhere
 
 window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    $("#fundingPopover").remove();
-  }
+  if (e.key === "Escape") removePopover();
 });
 
-window.addEventListener("click", function () {
-  $("#fundingPopover").remove();
-});
+window.addEventListener("click", removePopover);
 
-document.body.addEventListener("click", function (e) {
+/**
+ *
+ * @param {Event} e
+ */
+function clickAndKeyHandler(e) {
   if (
     e.target instanceof HTMLElement &&
     e.target.classList.contains("MoreInfoButton")
   )
     showHandler($(e.target), e);
-});
+}
+
+document.body.addEventListener("click", clickAndKeyHandler);
 
 // Event delegation for keydown event
 document.body.addEventListener("keydown", function (e) {
-  if (
-    e.target instanceof HTMLElement &&
-    e.target.classList.contains("MoreInfoButton")
-  )
-    if (e.key === "Enter" || e.key === " ") {
-      showHandler($(e.target), e);
-    }
+  if (e.key === "Enter" || e.key === " ") {
+    clickAndKeyHandler(e);
+  }
 });
 
 /**
