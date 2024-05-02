@@ -9,9 +9,11 @@ function removePopover() {
 
 /**
  * display popover
- * @param {JQuery<HTMLElement>} buttonElement
+ * @param {HTMLElement} target
  */
-function showMoreInfo(buttonElement) {
+function showMoreInfo(target) {
+  const buttonElement = $(target);
+
   const table = $("#tablepress-86").DataTable();
 
   const rowData = table.row(Number(buttonElement.data("row-id"))).data();
@@ -19,40 +21,41 @@ function showMoreInfo(buttonElement) {
   const content = `
   <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
   <dt>Description</dt><dd>${rowData.Description}</dd>
-  <button class="btn btn-secondary wp-block-button__link">Close</button>
   `;
 
   removePopover();
-  buttonElement.parent().append('<div id="fundingPopover"></div>');
-
-  $("#fundingPopover")
-    .append(content) // insert new content
-
-    // don't close when user clicks on popover content
-    .on("click", function (e) {
-      e.stopPropagation();
-    });
-
-  $("#fundingPopover > button").on("click", removePopover);
+  buttonElement.parent().append(
+    $("<div>")
+      // don't close when user clicks on popover content
+      .on("click", function (e) {
+        e.stopPropagation();
+      })
+      .attr("id", "fundingPopover")
+      .append(
+        content,
+        $("<button>")
+          .addClass("btn btn-secondary wp-block-button__link")
+          .text("Close")
+          .on("click", removePopover)
+      )
+  );
 }
 
 /**
- *
- * @param {JQuery<HTMLElement>} $element
+ * @param {HTMLElement} target
  * @param {Event} e
  */
-function showHandler($element, e) {
-  showMoreInfo($element);
+function showHandler(target, e) {
+  showMoreInfo(target);
   e.preventDefault();
   e.stopPropagation(); // stop click propogation
 }
-
-// close popover when clicking anywhere
 
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape") removePopover();
 });
 
+// close popover when clicking anywhere
 window.addEventListener("click", removePopover);
 
 /**
@@ -64,7 +67,7 @@ function clickAndKeyHandler(e) {
     e.target instanceof HTMLElement &&
     e.target.classList.contains("MoreInfoButton")
   )
-    showHandler($(e.target), e);
+    showHandler(e.target, e);
 }
 
 document.body.addEventListener("click", clickAndKeyHandler);
