@@ -98,12 +98,14 @@ function TablePressCustomCommands() {
       },
       {
         data: "Project Name",
-        render: function (data, type, row, meta) {
-          if (type === "display") {
-            return `${data}<p class="MoreInfoButton" tabindex="0" data-row-id="${meta.row}">More details</p>`;
-          }
-
-          return data;
+        createdCell: function (td, cellData, rowData, row) {
+          $(td).append(
+            $("<p>")
+              .addClass("MoreInfoButton")
+              .attr("tabindex", "0")
+              .data("row-id", row)
+              .text("More details")
+          );
         }
       },
       {
