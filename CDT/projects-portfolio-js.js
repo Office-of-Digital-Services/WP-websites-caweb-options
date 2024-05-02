@@ -1,70 +1,70 @@
 //@ts-check
 
 /**
- * Removes the popover, if it's there
- */
-function removePopover() {
-  $("#fundingPopover").remove();
-}
-
-/**
- * display popover
- * @param {HTMLElement} target
- */
-function showMoreInfo(target) {
-  const buttonElement = $(target);
-
-  const table = $("#tablepress-86").DataTable();
-
-  const rowData = table.row(Number(buttonElement.data("row-id"))).data();
-
-  const content = `
-  <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
-  <dt>Description</dt><dd>${rowData.Description}</dd>
-  `;
-
-  removePopover();
-  buttonElement.parent().append(
-    $("<div>")
-      // don't close when user clicks on popover content
-      .on("click", function (e) {
-        e.stopPropagation();
-      })
-      .attr("id", "fundingPopover")
-      .append(
-        content,
-        $("<button>")
-          .addClass("btn btn-secondary wp-block-button__link")
-          .text("Close")
-          .on("click", removePopover)
-      )
-  );
-}
-
-window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") removePopover();
-});
-
-// close popover when clicking anywhere
-window.addEventListener("click", removePopover);
-
-/**
- *
- * @param {JQuery.TriggeredEvent} e
- */
-function triggerMoreDetails(e) {
-  showMoreInfo(e.target);
-  e.preventDefault();
-  e.stopPropagation(); // stop click propogation
-}
-
-/**
  * Put this in the "Custom Commands" field in the table settings
  * @example
  * ...TablePressCustomCommands()
  */
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
+  /**
+   * Removes the popover, if it's there
+   */
+  function removePopover() {
+    $("#fundingPopover").remove();
+  }
+
+  /**
+   * display popover
+   * @param {HTMLElement} target
+   */
+  function showMoreInfo(target) {
+    const buttonElement = $(target);
+
+    const table = $("#tablepress-86").DataTable();
+
+    const rowData = table.row(Number(buttonElement.data("row-id"))).data();
+
+    const content = `
+  <dt>Project Name</dt><dd>${rowData["Project Name"]}</dd>
+  <dt>Description</dt><dd>${rowData.Description}</dd>
+  `;
+
+    removePopover();
+    buttonElement.parent().append(
+      $("<div>")
+        // don't close when user clicks on popover content
+        .on("click", function (e) {
+          e.stopPropagation();
+        })
+        .attr("id", "fundingPopover")
+        .append(
+          content,
+          $("<button>")
+            .addClass("btn btn-secondary wp-block-button__link")
+            .text("Close")
+            .on("click", removePopover)
+        )
+    );
+  }
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") removePopover();
+  });
+
+  // close popover when clicking anywhere
+  window.addEventListener("click", removePopover);
+
+  /**
+   *
+   * @param {JQuery.TriggeredEvent} e
+   */
+  function triggerMoreDetails(e) {
+    showMoreInfo(e.target);
+    e.preventDefault();
+    e.stopPropagation(); // stop click propogation
+  }
+
   return /** @type {import("datatables.net").Config} */ ({
     search: {
       exact: true,
