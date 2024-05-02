@@ -16,11 +16,9 @@ function TablePressCustomCommands() {
 
   /**
    * display popover
-   * @param {HTMLElement} target
+   * @param {JQuery<HTMLElement>} buttonElement
    */
-  function showMoreInfo(target) {
-    const buttonElement = $(target);
-
+  function showMoreInfo(buttonElement) {
     const table = $("#tablepress-86").DataTable();
 
     const rowData = table.row(Number(buttonElement.data("row-id"))).data();
@@ -60,7 +58,7 @@ function TablePressCustomCommands() {
    * @param {JQuery.TriggeredEvent} e
    */
   function triggerMoreDetails(e) {
-    showMoreInfo(e.target);
+    showMoreInfo($(e.target));
     e.preventDefault();
     e.stopPropagation(); // stop click propogation
   }
@@ -77,7 +75,7 @@ function TablePressCustomCommands() {
       },
       {
         data: "Project Name",
-        createdCell: function (td, cellData, rowData, row) {
+        createdCell: function (td, _cellData, _rowData, row) {
           $(td).append(
             $("<p>")
               .addClass("MoreInfoButton")
