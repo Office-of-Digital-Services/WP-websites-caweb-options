@@ -49,6 +49,16 @@ window.addEventListener("keydown", function (e) {
 window.addEventListener("click", removePopover);
 
 /**
+ *
+ * @param {JQuery.TriggeredEvent} e
+ */
+function triggerMoreDetails(e) {
+  showMoreInfo(e.target);
+  e.preventDefault();
+  e.stopPropagation(); // stop click propogation
+}
+
+/**
  * Put this in the "Custom Commands" field in the table settings
  * @example
  * ...TablePressCustomCommands()
@@ -74,17 +84,9 @@ function TablePressCustomCommands() {
               .attr("tabindex", "0")
               .data("row-id", row)
               .text("More details")
-              .on("click", function (e) {
-                showMoreInfo(/** @type {HTMLElement} */ (e.target));
-                e.preventDefault();
-                e.stopPropagation(); // stop click propogation
-              })
+              .on("click", triggerMoreDetails)
               .on("keydown", function (e) {
-                if (e.key === "Enter" || e.key === " ") {
-                  showMoreInfo(/** @type {HTMLElement} */ (e.target));
-                  e.preventDefault();
-                  e.stopPropagation(); // stop click propogation
-                }
+                if (e.key === "Enter" || e.key === " ") triggerMoreDetails(e);
               })
           );
         }
