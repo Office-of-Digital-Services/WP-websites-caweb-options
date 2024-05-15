@@ -147,7 +147,7 @@ function TablePressCustomCommands() {
       {
         data: "Condition",
         className: "column_condition",
-        defaultContent: "<em>N/A</em>",
+        defaultContent: "N/A",
         render: function (data, type) {
           if (type === "display") {
             if (!data) return null; //shows defaultContent
