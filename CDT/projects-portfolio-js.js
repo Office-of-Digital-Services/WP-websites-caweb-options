@@ -31,7 +31,7 @@ function TablePressCustomCommands() {
       .map(function (x) {
         return `<dt>${x}</dt><dd>${rowData[x]}</dd>`;
       })
-      .join("\n");
+      .join("");
 
     removePopover(); // close any existing popover
 
