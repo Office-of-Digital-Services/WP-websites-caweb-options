@@ -97,7 +97,7 @@ function TablePressCustomCommands() {
       },
       {
         data: "Total Cost",
-        defaultContent: "<em>N/A</em>",
+        defaultContent: "N/A",
         render: function (data, type) {
           if (type === "display") {
             if (!data) return null; //shows defaultContent
