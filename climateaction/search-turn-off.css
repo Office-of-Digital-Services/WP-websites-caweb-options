@@ -1,0 +1,6 @@
+/* HIDE SEARCH (temporarily) */
+@media (min-width: 768px) {
+  .site-header .search-container {
+    display: none !important;
+  }
+}
