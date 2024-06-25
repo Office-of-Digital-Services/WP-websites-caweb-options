@@ -5,31 +5,53 @@
     cursor: pointer;
   }
 </style>
-<div class="container mx-auto p-b-md">
+<div class="container mx-auto p-b-md p-t-md">
   <div class="row">
     <div class="col-md-10">
+      <nav aria-label="Breadcrumb" class="breadcrumbs">
+        <ol>
+          <li>
+            <a href="/" title="Home page">Home</a>
+          </li>
+          <li class="active">
+            <a href="/statewide-project-outcomes/" title="Landing page"
+              >Statewide IT Project Outcomes</a
+            >
+          </li>
+          <li class="active">Statewide IT Project Portfolio</li>
+        </ol>
+      </nav>
       <h1 class="m-b-md">Statewide IT Project Portfolio</h1>
       <p class="lead">
-        California is a leader in investing and the delivery of emerging technologies, designing people-centric solutions and
-        securing the state’s vital assets.</p>
-     </p class="lead">
-     California is investing $7.85 billion in information technology over the next 5 years. This money will fund upgrades that
-      benefit many programs and support California’s Strategic Plan to meet society’s goals and make progress on the big, complex problems affecting us all.
-    </p>
+        California is a leader in investing and the delivery of emerging
+        technologies, designing people-centric solutions and securing the
+        state’s vital assets.
+      </p>
+      <p class="lead">
+        California is investing $7.85 billion in information technology over the
+        next 5 years. This money will fund upgrades that benefit many programs
+        and support California’s Strategic Plan to meet society’s goals and make
+        progress on the big, complex problems affecting us all.
+      </p>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-10">
-      <h2 class="h3 m-b-0 m-t">
-        Current IT Project Portfolio
-      </h2>
+      <h2 class="h3 m-b-0 m-t">Current IT Project Portfolio</h2>
       <p class="font-size-13">
-        This pie chart shows all active information technology projects in the state project portfolio in planning or execution.
+        This pie chart shows all active information technology projects in the
+        state project portfolio in planning or execution.
       </p>
-        <p class="font-size-13">The criticality rating is an assessment of the project risk, sensitivity, and complexity and shown as high, medium, or
-      low.</p>
-        <p class="font-size-13">The majority of projects are delegated to the state departments, those listed as High, Medium, and Low Criticality are non-delegated and remain under oversight of the Department of Technology.</p>
+      <p class="font-size-13">
+        The criticality rating is an assessment of the project risk,
+        sensitivity, and complexity and shown as high, medium, or low.
+      </p>
+      <p class="font-size-13">
+        The majority of projects are delegated to the state departments, those
+        listed as High, Medium, and Low Criticality are non-delegated and remain
+        under oversight of the Department of Technology.
+      </p>
     </div>
   </div>
   <div class="row">
@@ -38,35 +60,55 @@
     </div>
     <div class="col-lg-7 d-flex flex-column">
       <h3 class="h4 mt-auto mb-2">Criticality level</h3>
-      <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
-        role="button" onclick="setDdValue('High')">
-        <div class="height-30 width-30 m-r-sm" style="background-color: #f2b23e;"></div>
-        <p class="colot-primary-hover"><a href="#ddRisk" class="gray-900">High</a></p>
+      <div
+        class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
+        role="button"
+        onclick="setDdValue('High')">
+        <div
+          class="height-30 width-30 m-r-sm"
+          style="background-color: #f2b23e;"></div>
+        <p class="colot-primary-hover">
+          <a href="#ddRisk" class="gray-900">High</a>
+        </p>
       </div>
-      <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button"
+      <div
+        class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
+        role="button"
         onclick="setDdValue('Medium')">
-        <div class="height-30 width-30 m-r-sm" style="background-color: #1a3e62;"></div>
+        <div
+          class="height-30 width-30 m-r-sm"
+          style="background-color: #1a3e62;"></div>
         <p><a href="#ddRisk" class="gray-900">Medium</a></p>
       </div>
-      <div class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3" role="button"
+      <div
+        class="d-flex cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
+        role="button"
         onclick="setDdValue('Low')">
-        <div class="height-30 width-30 m-r-sm" style="background-color: #4590ca;"></div>
+        <div
+          class="height-30 width-30 m-r-sm"
+          style="background-color: #4590ca;"></div>
         <p><a href="#ddRisk" class="gray-900">Low</a></p>
       </div>
-      <div class="d-flex mb-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
-        role="button" onclick="setDdValue('Delegated')">
-        <div class="height-30 width-30 m-r-sm" style="background-color: #666666;"></div>
+      <div
+        class="d-flex mb-auto cursor-pointer bg-gray-50-hover transform-scale-1_05--hover transition-0_3"
+        role="button"
+        onclick="setDdValue('Delegated')">
+        <div
+          class="height-30 width-30 m-r-sm"
+          style="background-color: #666666;"></div>
         <p><a href="#ddRisk" class="gray-900">Delegated</a></p>
       </div>
-      
     </div>
   </div>
   <div class="row">
     <div class="col-lg-10">
-     <p>Learn more about <a href="/statewide-project-outcomes/">Statewide IT Project Outcomes</a>.</p>
+      <p>
+        Learn more about
+        <a href="/statewide-project-outcomes/">Statewide IT Project Outcomes</a
+        >.
+      </p>
     </div>
   </div>
- 
 </div>
 
 <script>
@@ -80,25 +122,25 @@
   const chartData = [
     {
       "Risk": "High",
-      "Value": 18,
+      "Value": 17,
       "color": "#f2b23e", // yellow
       "hovercolor": "#C4840E"
     },
     {
       "Risk": "Medium",
-      "Value": 69,
+      "Value": 64,
       "color": "#1a3e62", // cdt blue
       "hovercolor": "#17385b"
     },
     {
       "Risk": "Low",
-      "Value": 37,
+      "Value": 35,
       "color": "#4590ca", // light blue
       "hovercolor": "#3786C3"
     },
     {
       "Risk": "Delegated",
-      "Value": 141,
+      "Value": 102,
       "color": "#666666", // gray
       "hovercolor": "#595959"
     }
