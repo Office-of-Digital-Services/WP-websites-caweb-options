@@ -90,10 +90,15 @@
 </div>
 
 <script>
+  const myData = $('#tablepress-89').DataTable().data()
+  const totalSuccessful = dt.filter(x=>x.Outcome==="Successful").count();
+  const percentSuccessful = Math.floor(totalSuccessful / myData.count() * 100);
+  const percentChallenged = 100-percentSuccessful;
+
   // BAR CHART START
   const stateValues = [
-    {categ: "Successful projects", percent1: 64},
-    {categ: "Challenged projects", percent1: 36},
+    {categ: "Successful projects", percent1: percentSuccessful},
+    {categ: "Challenged projects", percent1: percentChallenged},
     {categ: "Failed projects", percent1: 0}
   ];
 
