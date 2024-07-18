@@ -8,7 +8,6 @@
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
   const tableid = "43"; //Make sure to set this to the right tablepress id
-
   /**
    * Removes the popover, if it's there
    */
@@ -127,6 +126,36 @@ function TablePressCustomCommands() {
         data: aServiceTypeRows[3],
         visible: false
       }
-    ]
+    ],
+    initComplete: function (settings) {
+      const counties = [
+        ...new Set([
+          ...Array.from(settings.aoData).map(
+            x => x["_aData"]["Organization Location"]
+          )
+        ])
+      ]
+        .filter(x => x !== "")
+        .sort();
+
+      const ddCounty = /** @type {HTMLSelectElement} */ (
+        document.getElementById("ddCounty")
+      );
+      counties.forEach(x => {
+        const el = document.createElement("option");
+        el.text = x;
+
+        ddCounty.options.add(el);
+      });
+
+      ddCounty.addEventListener("change", function () {
+        alert("yop");
+        $(`#tablepress-${tableid}`)
+          .DataTable()
+          .column("Organization Location:name")
+          .search(this.value)
+          .draw();
+      });
+    }
   });
 }
