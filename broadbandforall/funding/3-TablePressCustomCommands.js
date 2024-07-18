@@ -96,6 +96,7 @@ function TablePressCustomCommands() {
       },
       {
         data: "Organization Location",
+        name: "County",
         title: "County"
       },
       {
@@ -149,10 +150,9 @@ function TablePressCustomCommands() {
       });
 
       ddCounty.addEventListener("change", function () {
-        alert("yop");
         $(`#tablepress-${tableid}`)
           .DataTable()
-          .column("Organization Location:name")
+          .column("County:name")
           .search(this.value)
           .draw();
       });
