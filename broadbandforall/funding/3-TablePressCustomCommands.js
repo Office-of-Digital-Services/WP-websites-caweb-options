@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-jsdoc */
 //@ts-check
 
 /**
@@ -149,13 +150,15 @@ function TablePressCustomCommands() {
         ddCounty.options.add(el);
       });
 
-      ddCounty.addEventListener("change", function () {
+      function filterCounty() {
         $(`#tablepress-${tableid}`)
           .DataTable()
           .column("County:name")
           .search(this.value)
           .draw();
-      });
+      }
+
+      ddCounty.addEventListener("change", filterCounty);
     }
   });
 }
