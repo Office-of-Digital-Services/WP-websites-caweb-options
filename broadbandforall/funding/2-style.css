@@ -12,7 +12,6 @@
 
 .MoreInfoButton {
   text-decoration: underline dotted 1px;
-  color: #20367c;
   margin-top: 0.8em;
   cursor: pointer;
 }
@@ -23,6 +22,10 @@ div.dataTables_wrapper {
 #fundingPopover > button {
   margin: 1em;
   padding: 1em;
+  background-color: #003688;
+}
+#fundingPopover > button:hover {
+  background-color: #165ac2;
 }
 
 #fundingPopover {
