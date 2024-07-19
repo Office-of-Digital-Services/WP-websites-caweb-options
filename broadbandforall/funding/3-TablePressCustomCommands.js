@@ -70,10 +70,10 @@ function TablePressCustomCommands() {
   }
 
   const aServiceTypeRows = [
-    "Service type: Get a computer or device",
-    "Service type: Get tech help",
-    "Service type: Find training or class",
-    "Service type: Find a public computer"
+    "Get a computer or device",
+    "Get tech help",
+    "Find training or class",
+    "Find a public computer"
   ];
 
   return /** @type {import("datatables.net").Config} */ ({
@@ -105,27 +105,28 @@ function TablePressCustomCommands() {
         visible: false
       },
       {
-        data: aServiceTypeRows[0],
+        data: `Service type: ${aServiceTypeRows[0]}`,
         title: "Service type",
+        name: "ServiceType",
         defaultContent: "N/A",
         render: function (data, type, row) {
-          const types = aServiceTypeRows
-            .filter(x => row[x] === "1")
-            .map(x => x.replace("Service type: ", ""));
+          const types = aServiceTypeRows.filter(
+            x => row[`Service type: ${x}`] === "1"
+          );
 
           return types.length ? types.join(", ") : null;
         }
       },
       {
-        data: aServiceTypeRows[1],
+        data: `Service type: ${aServiceTypeRows[1]}`,
         visible: false
       },
       {
-        data: aServiceTypeRows[2],
+        data: `Service type: ${aServiceTypeRows[2]}`,
         visible: false
       },
       {
-        data: aServiceTypeRows[3],
+        data: `Service type: ${aServiceTypeRows[3]}`,
         visible: false
       }
     ],
@@ -159,6 +160,26 @@ function TablePressCustomCommands() {
       }
 
       ddCounty.addEventListener("change", filterCounty);
+
+      const ddServiceType = /** @type {HTMLSelectElement} */ (
+        document.getElementById("ddServiceType")
+      );
+      aServiceTypeRows.forEach(x => {
+        const el = document.createElement("option");
+        el.text = x;
+
+        ddServiceType.options.add(el);
+      });
+
+      function filterServiceTypes() {
+        $(`#tablepress-${tableid}`)
+          .DataTable()
+          .column("ServiceType:name")
+          .search(this.value)
+          .draw();
+      }
+
+      ddServiceType.addEventListener("change", filterServiceTypes);
     }
   });
 }
