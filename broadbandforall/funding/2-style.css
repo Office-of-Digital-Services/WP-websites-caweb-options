@@ -12,13 +12,17 @@
 
 .MoreInfoButton {
   text-decoration: underline dotted 1px;
-  color: blue;
+  color: #20367c;
   margin-top: 0.8em;
   cursor: pointer;
 }
 
 div.dataTables_wrapper {
   overflow-x: visible;
+}
+#fundingPopover > button {
+  margin: 1em;
+  padding: 1em;
 }
 
 #fundingPopover {
