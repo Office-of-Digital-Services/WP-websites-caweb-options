@@ -1,3 +1,39 @@
+.dataTables_scroll .tablepress {
+  font-size: 1.1rem;
+}
+
 .dataTables_filter > label > input[type="search"] {
   border: revert;
+}
+
+#fundingPopover .MoreInfoButton {
+  display: none;
+}
+
+.MoreInfoButton {
+  text-decoration: underline dotted 1px;
+  color: blue;
+  margin-top: 0.8em;
+  cursor: pointer;
+}
+
+div.dataTables_wrapper {
+  overflow-x: visible;
+}
+
+#fundingPopover {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  border: 2px solid #888;
+  z-index: 10;
+  background: white;
+  padding: 0.6em;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

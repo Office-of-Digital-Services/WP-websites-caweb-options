@@ -27,9 +27,17 @@ function TablePressCustomCommands() {
       .data();
 
     // Creates the content string, <dt><dd>
-    const content = ["Project Name", "Description"]
+    const content = [
+      "Organization",
+      "Program Description(s)",
+      "Organization Location",
+      "Service Area",
+      `Service type: Get a computer or device`,
+      "Website",
+      "Organization Description"
+    ]
       .map(function (x) {
-        return `<dt>${x}</dt><dd>${rowData[x]}</dd>`;
+        return `<dt>${x}</dt><dd>${rowData[x] || "N/A"}</dd>`;
       })
       .join("");
 
@@ -82,7 +90,24 @@ function TablePressCustomCommands() {
       smart: false
     },
     columns: [
-      { data: "Organization" },
+      {
+        data: "Organization",
+        createdCell: function (td, _cellData, _rowData, row) {
+          console.log;
+
+          $(td).append(
+            $("<p>")
+              .addClass("MoreInfoButton")
+              .attr("tabindex", "0")
+              .data("row-id", row)
+              .text("More details")
+              .on("click", triggerMoreDetails)
+              .on("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") triggerMoreDetails(e);
+              })
+          );
+        }
+      },
       {
         data: "Organization Description",
         visible: false
