@@ -105,6 +105,7 @@ function TablePressCustomCommands() {
         visible: false
       },
       {
+        //Using this column for the combined "Service Type" column
         data: `Service type: ${aServiceTypeRows[0]}`,
         title: "Service type",
         name: "ServiceType",
