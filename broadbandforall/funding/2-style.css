@@ -19,14 +19,6 @@
 div.dataTables_wrapper {
   overflow-x: visible;
 }
-#fundingPopover > button {
-  margin: 1em;
-  padding: 1em;
-  background-color: #003688;
-}
-#fundingPopover > button:hover {
-  background-color: #165ac2;
-}
 
 #fundingPopover {
   display: block;
@@ -39,8 +31,50 @@ div.dataTables_wrapper {
   border: 2px solid #888;
   z-index: 10;
   background: white;
-  padding: 0.6em;
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#fundingPopover div.d-flex {
+  align-items: stretch;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  font-size: 16px;
+}
+
+#fundingPopover div.d-flex > :first-child {
+  flex-basis: 200px;
+  flex-grow: 1;
+}
+
+#fundingPopover div.d-flex > :last-child {
+  flex-basis: 200px;
+  flex-grow: 9999;
+  margin-left: 0;
+}
+
+#fundingPopover div.d-flex dt {
+  font-weight: 700;
+  text-align: left;
+}
+
+@media (min-width: 1003px) {
+  #fundingPopover div.d-flex {
+    gap: 1.5rem;
+  }
+
+  #fundingPopover div.d-flex dt {
+    text-align: right;
+  }
+}
+
+#fundingPopover div.d-flex:first-child dt {
+  display: none;
+}
+
+#fundingPopover div.d-flex:first-child dd {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 0;
 }
