@@ -37,14 +37,14 @@ function TablePressCustomCommands() {
       "Organization Description"
     ]
       .map(function (x) {
-        return `<dt>${x}</dt><dd>${rowData[x] || "N/A"}</dd>`;
+        return `<div class="d-flex"><dt>${x}</dt><dd>${rowData[x] || "N/A"}</dd></div>`;
       })
       .join("");
 
     removePopover(); // close any existing popover
 
     buttonElement.parent().append(
-      $("<div>")
+      $("<div class='p-b-4 p-a-2'>")
         .on("click", function (e) {
           // don't close when user clicks on popover content
           e.stopPropagation();
@@ -52,10 +52,14 @@ function TablePressCustomCommands() {
         .attr("id", "fundingPopover")
         .append(
           content,
-          $("<button>")
-            .addClass("btn btn-secondary wp-block-button__link")
-            .text("Close")
-            .on("click", removePopover)
+          $(
+            "<div class='d-block text-right m-t-2 p-t-2 border-t-1 border-gray-200'>"
+          ).append(
+            $("<button>")
+              .addClass("btn-primary-outline")
+              .text("Close")
+              .on("click", removePopover)
+          )
         )
     );
   }
@@ -92,21 +96,8 @@ function TablePressCustomCommands() {
     columns: [
       {
         data: "Organization",
-        createdCell: function (td, _cellData, _rowData, row) {
-          console.log;
-
-          $(td).append(
-            $("<p>")
-              .addClass("MoreInfoButton")
-              .attr("tabindex", "0")
-              .data("row-id", row)
-              .text("More details")
-              .on("click", triggerMoreDetails)
-              .on("keydown", function (e) {
-                if (e.key === "Enter" || e.key === " ") triggerMoreDetails(e);
-              })
-          );
-        }
+        name: "Organization",
+        title: "Organization"
       },
       {
         data: "Organization Description",
@@ -154,6 +145,24 @@ function TablePressCustomCommands() {
       {
         data: `Service type: ${aServiceTypeRows[3]}`,
         visible: false
+      },
+      {
+        data: "More details",
+        createdCell: function (td, _cellData, _rowData, row) {
+          console.log;
+
+          $(td).append(
+            $("<p>")
+              .addClass("MoreInfoButton")
+              .attr("tabindex", "0")
+              .data("row-id", row)
+              .text("More details")
+              .on("click", triggerMoreDetails)
+              .on("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") triggerMoreDetails(e);
+              })
+          );
+        }
       }
     ],
     initComplete: function (settings) {
