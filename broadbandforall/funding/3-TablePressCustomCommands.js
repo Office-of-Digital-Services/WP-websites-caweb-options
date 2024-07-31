@@ -152,9 +152,8 @@ function TablePressCustomCommands() {
           console.log;
 
           $(td).append(
-            $("<p>")
+            $("<button>")
               .addClass("MoreInfoButton")
-              .attr("tabindex", "0")
               .data("row-id", row)
               .text("More details")
               .on("click", triggerMoreDetails)

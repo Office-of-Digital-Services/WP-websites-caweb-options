@@ -2,6 +2,11 @@
   font-size: 1.1rem;
 }
 
+.column-1,
+.column-7 {
+  width: 30%;
+}
+
 .dataTables_filter > label > input[type="search"] {
   border: revert;
 }
@@ -12,8 +17,13 @@
 
 .MoreInfoButton {
   text-decoration: underline dotted 1px;
-  margin-top: 0.8em;
+  color: #20367c;
   cursor: pointer;
+}
+
+.MoreInfoButton:hover,
+.MoreInfoButton:focus {
+  color: #15265e;
 }
 
 div.dataTables_wrapper {
