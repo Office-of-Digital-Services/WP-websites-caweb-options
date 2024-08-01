@@ -33,8 +33,10 @@ function TablePressCustomCommands() {
       "Organization Location",
       "Service Area",
       `Service type: Get a computer or device`,
+      "INFO @Email Address",
       "Website",
-      "Organization Description"
+      "Organization Description",
+      "Additional service"
     ]
       .map(function (x) {
         return `<div class="d-flex"><dt>${x}</dt><dd>${rowData[x] || "N/A"}</dd></div>`;
@@ -104,6 +106,10 @@ function TablePressCustomCommands() {
         visible: false
       },
       {
+        data: "INFO @Email Address",
+        visible: false
+      },
+      {
         data: "Website",
         visible: false
       },
@@ -144,6 +150,10 @@ function TablePressCustomCommands() {
       },
       {
         data: `Service type: ${aServiceTypeRows[3]}`,
+        visible: false
+      },
+      {
+        data: "Additional service",
         visible: false
       },
       {
