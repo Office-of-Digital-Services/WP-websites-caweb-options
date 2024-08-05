@@ -1,0 +1,76 @@
+<style>
+  #dropdown_container {
+  	margin-bottom:1em;
+  }
+  #keyword1, #keyword2 {
+  	margin:0 .5em;
+  }
+  #funding_container .tablepress th, #funding_container .tablepress td {
+  	font-size:0px;
+  	padding:0;
+  }
+  .column-3, .column-6, .column-9, .column-14, .column-17 {
+  	font-size:1rem !important;
+  	padding:6px 24px !important;
+  }
+  .MoreInfoButton {
+  	text-decoration: underline dotted 1px;
+  	color:blue;
+  	margin-top:0.8em;
+  	cursor: pointer;
+  }
+  #fundingPopover {
+  	display:block;
+  	position:absolute;
+  	top:-2em;
+  	left:1em;
+  	width:65vw;
+  	min-width:400px;
+  	max-width:800px;
+  	border:2px solid #888;
+  	z-index:10;
+  	background:white;
+  	padding:.6em;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .max-290 {
+    max-width: 290px;
+  }
+
+  /* These are needed when using Divi, to match non-Divi pages */
+  .divi_builder .main-content {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+  .divi_builder .main-content {
+      max-width: 750px !important;
+  }
+  }
+  @media (min-width: 992px) {
+  .divi_builder .main-content {
+      max-width: 970px !important;
+  }
+  }
+  @media (min-width: 1200px) {
+  .divi_builder .main-content {
+      max-width: 1200px !important;
+  }
+  }
+  @media (min-width: 1280px) {
+  .divi_builder .main-content {
+      max-width: 1176px !important;
+  }
+  }
+
+  /* eliminates scrolling when popover appears */
+  div.dataTables_wrapper {
+  	overflow-x: visible;
+  }
+
+  .dataTables_wrapper input {
+  	border-width:1px;
+  }
+</style>
