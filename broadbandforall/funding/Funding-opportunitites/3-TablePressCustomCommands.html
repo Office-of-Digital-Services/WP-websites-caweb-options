@@ -1,0 +1,199 @@
+<script
+  type="text/javascript"
+  language="javascript"
+  src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+  <!--
+  // Note: tablepress columns classnames start at 1, DataTable starts at 0.
+
+  // linkify - https://stackoverflow.com/questions/37684/how-to-replace-plain-urls-with-links
+  if(!String.linkify) {
+      String.prototype.linkify = function() {
+
+          // http://, https://, ftp://
+          var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+
+          // www. sans http:// or https://
+          var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+
+          // Email addresses
+          //var emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
+
+          return this
+              .replace(urlPattern, '<a href="$&" target="_blank">$&</a>')
+              .replace(pseudoUrlPattern, '$1<a href="http://$2" target="_blank">$2</a>')
+              //.replace(emailAddressPattern, '<a href="mailto:$&">$&</a>');
+      };
+  }
+
+
+
+  // filter
+  jQuery.fn.dataTable.ext.search.push(
+  	function( settings, data, dataIndex ) {
+
+  		var category = $('#keyword1').val();
+  		var applicant = $('#keyword2').val();
+
+  		if ( (category != "") && (data[6].indexOf(category) < 0) ) {
+  			return false;
+  		}
+  		if ( (applicant != "") && (data[18].indexOf(applicant) < 0) ) {
+  			return false;
+  		}
+
+  		return true;
+
+  	}
+  );
+
+  // display popover
+  function showMoreInfo(buttonElement){
+  	var content = "<p><strong>State or Federal:</strong> " + buttonElement.parent().parent().find(".column-1").html() + "</p>";
+
+    content += "<p><strong>Program Status:</strong> " + buttonElement.parent().parent().find(".column-2").html() + "</p>";
+
+    content += "<p><strong>Program Agency:</strong> " + buttonElement.parent().parent().find(".column-4").html() + "</p>";
+
+    content += "<p><strong>Program Division:</strong> " + buttonElement.parent().parent().find(".column-5").html() + "</p>";
+
+    content += "<p><strong>Program Purpose:</strong> " + buttonElement.parent().parent().find(".column-7").html() + "</p>";
+
+    content += "<p><strong>Program Purpose at a glance:</strong> " + buttonElement.parent().parent().find(".column-8").html() + "</p>";
+
+    content += "<p><strong>Funding (FY-22):</strong> " + buttonElement.parent().parent().find(".column-10").html() + "</p>";
+
+    content += "<p><strong>Nature of Award:</strong> " + buttonElement.parent().parent().find(".column-11").html() + "</p>";
+
+    content += "<p><strong>Match Requirement:</strong> " + buttonElement.parent().parent().find(".column-15").html() + "</p>";
+
+    content += "<p><strong>Funding Cycles:</strong> " + buttonElement.parent().parent().find(".column-16").html() + "</p>";
+
+    content += "<p><strong>Eligible Applicants:</strong> " + buttonElement.parent().parent().find(".column-19").html() + "</p>";
+
+    content += "<p><strong>Eligible Entities:</strong> " + buttonElement.parent().parent().find(".column-20").html() + "</p>";
+
+    content += "<p><strong>Eligible Areas:</strong> " + buttonElement.parent().parent().find(".column-21").html() + "</p>";
+
+    content += "<p><strong>Eligible Costs:</strong> " + buttonElement.parent().parent().find(".column-22").html() + "</p>";
+
+  	content = content.linkify();
+
+    var website = buttonElement.parent().parent().find(".column-26").html();
+    if (website) content += '<p><strong><a href="' + website + '">Agency Website</strong></a></p>';
+
+  	content += '<button class="btn btn-secondary wp-block-button__link">Close</button>';
+
+  	$("#fundingPopover").remove(); // remove existing popover, if it's open
+  	buttonElement.parent().append('<div id="fundingPopover"></div>'); // append popover container
+  	$('#fundingPopover').append(content); // insert new content
+
+  	// click handler for 'close' button
+  	jQuery("button.btn").click(function(){
+  	  $("#fundingPopover").remove();
+  	});
+
+  	// don't close when user clicks on popover content
+  	jQuery("#fundingPopover").click(function(ev){
+  		ev.stopPropagation();
+  	});
+
+  	// position popover at the top of the viewport,
+  	document.querySelector("#fundingPopover").style.top = ( document.documentElement.scrollTop - ( document.querySelector("#funding_container").getBoundingClientRect().top - document.body.getBoundingClientRect().top ) + 16) + "px";
+
+  };
+
+  jQuery(document).ready(function() {
+
+  	//console.log( "doc ready "+jQuery("#funding_container tr:first-of-type td").length + " columns " + jQuery("#funding_container tr").length + " rows ");
+
+  	// Create list of categories, col G / 7
+
+  	const nodeListCategories = document.querySelectorAll("td.column-7");
+  	const arrayCategories = [];
+  	for (let cell of nodeListCategories) {
+  		arrayThisRowCategories = cell.textContent.split(",");
+  		for (let category of arrayThisRowCategories) {
+  			category = category.trim();
+  			if (arrayCategories.indexOf(category) === -1) {
+  				arrayCategories.push(category);
+  			}
+  		}
+  	}
+  	arrayCategories.sort();
+
+  	// create list of applicants
+
+  	const nodeListApplicants = document.querySelectorAll("td.column-19");
+  	const arrayApplicants = [];
+  	for (let cell of nodeListApplicants) {
+  		arrayThisRowApplicants = cell.textContent.split(",");
+  		for (let applicant of arrayThisRowApplicants) {
+  			applicant = applicant.trim();
+  			if (arrayApplicants.indexOf(applicant) === -1) {
+  				arrayApplicants.push(applicant);
+  			}
+  		}
+  	}
+  	arrayApplicants.sort();
+
+  	var select = document.getElementById("keyword1"); // category dropdown
+
+  	for(let category of arrayCategories) {
+  		var el = document.createElement("option");
+  		el.textContent = category;
+  		el.value = category;
+  		select.appendChild(el);
+  	}
+
+  	select = document.getElementById("keyword2"); // applicant dropdown
+
+  	for(let applicant of arrayApplicants) {
+  		var el = document.createElement("option");
+  		el.textContent = applicant;
+  		el.value = applicant;
+  		select.appendChild(el);
+  	}
+
+  	// insert 'more info' buttons
+  	$('#funding_container td.column-6').append('<p class="MoreInfoButton" tabindex="0">More Info</p>');
+  	$('.MoreInfoButton').click(function(e) {
+  		showMoreInfo($(this));
+  	  e.stopPropagation(); // stop click propogation
+  	});
+
+  	$('.MoreInfoButton').keydown(function(e) {
+  		if (event.code === 'Space' || event.code === 'Enter') {
+  			showMoreInfo($(this));
+  		  e.stopPropagation(); // stop click propogation
+  		}
+  	});
+
+
+  	var table = $('#funding_container .tablepress').DataTable({
+  	  "paging":   false,
+  	  "ordering": false,
+  	  "info":     true
+  	});
+
+  	// Event listener to the two filtering inputs to redraw on input
+  	$('#keyword1, #keyword2').change( function() {
+  		table.draw();
+  	} );
+
+  } );
+
+  // close popover when clicking anywhere
+  jQuery("body").click(function(){
+    $("#fundingPopover").remove();
+  });
+
+  // close popover when user hits esc
+  jQuery("body").keydown(function(e) {
+  	if (event.code === 'Escape') {
+  	  $("#fundingPopover").remove();
+  	}
+  });
+  //-->
+</script>
