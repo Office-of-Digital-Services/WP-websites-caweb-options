@@ -8,7 +8,6 @@
  */
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
-  const tableid = "43"; //Make sure to set this to the right tablepress id
   /**
    * Removes the popover, if it's there
    */
@@ -21,7 +20,7 @@ function TablePressCustomCommands() {
    * @param {JQuery<HTMLElement>} buttonElement
    */
   function showMoreInfo(buttonElement) {
-    const rowData = $(`#tablepress-${tableid}`)
+    const rowData = $('table[id^="tablepress-"]')
       .DataTable()
       .row(Number(buttonElement.data("row-id")))
       .data();
@@ -195,7 +194,7 @@ function TablePressCustomCommands() {
       });
 
       function filterCounty() {
-        $(`#tablepress-${tableid}`)
+        $('table[id^="tablepress-"]')
           .DataTable()
           .column("County:name")
           .search(this.value)
@@ -215,7 +214,7 @@ function TablePressCustomCommands() {
       });
 
       function filterServiceTypes() {
-        $(`#tablepress-${tableid}`)
+        $('table[id^="tablepress-"]')
           .DataTable()
           .column("ServiceType:name")
           .search(this.value)
