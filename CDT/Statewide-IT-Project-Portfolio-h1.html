@@ -120,28 +120,31 @@
     ddRisk.dispatchEvent(new Event("change"));
   }
 
+  const tablePressData = $('table[id^="tablepress-"]').DataTable().rows().data();
+  const riskData = tablePressData.map(x=>x["Criticality Level"]);
+
   const chartData = [
     {
       "Risk": "High",
-      "Value": 16,
+      "Value": riskData.filter(x=>x==="High").count(),
       "color": "#f2b23e", // yellow
       "hovercolor": "#C4840E"
     },
     {
       "Risk": "Medium",
-      "Value": 64,
+      "Value": riskData.filter(x=>x==="Medium").count(),
       "color": "#1a3e62", // cdt blue
       "hovercolor": "#17385b"
     },
     {
       "Risk": "Low",
-      "Value": 35,
+      "Value": riskData.filter(x=>x==="Low").count(),
       "color": "#4590ca", // light blue
       "hovercolor": "#3786C3"
     },
     {
       "Risk": "Delegated",
-      "Value": 94,
+      "Value": riskData.filter(x=>x==="Delegated").count(),
       "color": "#666666", // gray
       "hovercolor": "#595959"
     }
