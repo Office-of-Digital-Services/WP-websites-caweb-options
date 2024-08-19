@@ -61,12 +61,14 @@ div.dataTables_wrapper {
 #fundingPopover div.d-flex > :first-child {
   flex-basis: 200px;
   flex-grow: 1;
+  text-wrap: wrap;
 }
 
 #fundingPopover div.d-flex > :last-child {
   flex-basis: 200px;
   flex-grow: 9999;
   margin-left: 0;
+  text-wrap: wrap;
 }
 
 #fundingPopover div.d-flex dt {
