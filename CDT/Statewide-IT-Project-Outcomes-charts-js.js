@@ -1,5 +1,5 @@
 // Get all rows from the table body
-const rows = document.querySelectorAll("#tablepress-89 tbody tr");
+const rows = document.querySelectorAll("#tablepress-95 tbody tr");
 // Filter rows where the outcome is "Successful"
 const successfulRows = Array.from(rows).filter(row => {
   const outcomeCell = row.querySelector("td:nth-child(6)");
