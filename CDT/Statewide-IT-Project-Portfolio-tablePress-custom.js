@@ -7,8 +7,6 @@
  */
 // eslint-disable-next-line no-unused-vars
 function TablePressCustomCommands() {
-  const tableid = "86"; //Make sure to set this to the right tablepress id
-
   /**
    * Removes the popover, if it's there
    */
@@ -21,10 +19,8 @@ function TablePressCustomCommands() {
    * @param {JQuery<HTMLElement>} buttonElement
    */
   function showMoreInfo(buttonElement) {
-    const rowData = $(`#tablepress-${tableid}`)
-      .DataTable()
-      .row(Number(buttonElement.data("row-id")))
-      .data();
+    const table = $('table[id^="tablepress-"]').DataTable();
+    const rowData = table.row(Number(buttonElement.data("row-id"))).data();
 
     // Creates the content string, <dt><dd>
     const content = ["Project Name", "Description"]
