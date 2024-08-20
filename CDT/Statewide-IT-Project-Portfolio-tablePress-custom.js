@@ -169,7 +169,7 @@ function TablePressCustomCommands() {
       }
     ],
     // trigger donut charts function after table press is done rendering
-    initComplete: function (settings) {
+    initComplete: function () {
       renderDonutChartsWithDynamicNumbers();
     }
   });
@@ -177,7 +177,9 @@ function TablePressCustomCommands() {
 
 /* Donut charts function */
 const setDdValue = value => {
-  const ddRisk = document.getElementById("ddRisk");
+  const ddRisk = /** @type {HTMLSelectElement} */ (
+    document.getElementById("ddRisk")
+  );
   ddRisk.value = value;
   ddRisk.dispatchEvent(new Event("change"));
 };
@@ -231,10 +233,10 @@ function renderDonutChartsWithDynamicNumbers() {
     .append("g")
     .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-  const colorScale = d3
-    .scaleOrdinal()
-    .domain(chartData.map(d => d.Risk))
-    .range(d3.schemeCategory10);
+  //const colorScale = d3
+  //  .scaleOrdinal()
+  //  .domain(chartData.map(d => d.Risk))
+  //  .range(d3.schemeCategory10);
 
   const pie = d3.pie().value(d => d.Value);
 
