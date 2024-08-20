@@ -20,24 +20,36 @@ function TablePressCustomCommands() {
    * @param {JQuery<HTMLElement>} buttonElement
    */
   function showMoreInfo(buttonElement) {
-    const rowData = $('table[id^="tablepress-"]')
-      .DataTable()
-      .row(Number(buttonElement.data("row-id")))
-      .data();
+    const table = $('table[id^="tablepress-"]').DataTable();
+    const rowNumber = Number(buttonElement.data("row-id"));
 
-    // Creates the content string, <dt><dd>
-    const content = [
+    const rowData = table.row(rowNumber).data();
+
+    const detailsFields = [
       "Organization",
       "Program Description(s)",
       "Organization Location",
       "Service Area",
-      `Service type: Get a computer or device`,
+      "Service type",
       "Website",
       "Additional service",
       "Organization Description"
-    ]
+    ];
+
+    const detailsData = {};
+    detailsFields.forEach(x => {
+      detailsData[x] = rowData[x] || "N/A";
+    });
+
+    //Overrite with the display value for this column
+    detailsData["Service type"] = table
+      .cell(rowNumber, "ServiceType:name")
+      .render("display");
+
+    // Creates the content string, <dt><dd>
+    const content = Object.keys(detailsData)
       .map(function (x) {
-        return `<div class="d-flex"><dt>${x}</dt><dd>${rowData[x] || "N/A"}</dd></div>`;
+        return `<div class="d-flex"><dt>${x}</dt><dd>${detailsData[x] || "N/A"}</dd></div>`;
       })
       .join("");
 
