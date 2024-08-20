@@ -2,16 +2,6 @@
   font-size: 1.1rem;
 }
 
-.column-1,
-.column-7 {
-  width: 30%;
-}
-
-.column-13 {
-  text-wrap: nowrap;
-  width: 1%;
-}
-
 .dataTables_filter > label > input[type="search"] {
   border: revert;
 }
@@ -61,12 +51,14 @@ div.dataTables_wrapper {
 #fundingPopover div.d-flex > :first-child {
   flex-basis: 200px;
   flex-grow: 1;
+  text-wrap: wrap;
 }
 
 #fundingPopover div.d-flex > :last-child {
   flex-basis: 200px;
   flex-grow: 9999;
   margin-left: 0;
+  text-wrap: wrap;
 }
 
 #fundingPopover div.d-flex dt {
