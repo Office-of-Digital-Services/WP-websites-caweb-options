@@ -10,10 +10,15 @@
   display: none;
 }
 
+th {
+  white-space: nowrap;
+}
+
 .MoreInfoButton {
   text-decoration: underline dotted 1px;
   color: #20367c;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .MoreInfoButton:hover,

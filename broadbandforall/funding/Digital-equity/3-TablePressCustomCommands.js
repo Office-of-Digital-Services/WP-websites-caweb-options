@@ -156,6 +156,8 @@ function TablePressCustomCommands() {
       },
       {
         data: "More details",
+        className: "nowrap",
+        width: "1%",
         createdCell: function (td, _cellData, _rowData, row) {
           console.log;
 
