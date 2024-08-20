@@ -7,6 +7,9 @@
     "node": false,
     "jquery": true
   },
+  "globals": {
+    "d3": "readonly"
+  },
   "extends": ["eslint:recommended", "plugin:jsdoc/recommended"],
   "parserOptions": {
     "ecmaVersion": "latest",
