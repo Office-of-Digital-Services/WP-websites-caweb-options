@@ -38,13 +38,19 @@ function TablePressCustomCommands() {
 
     const detailsData = {};
     detailsFields.forEach(x => {
-      detailsData[x] = rowData[x] || "N/A";
+      detailsData[x] = rowData[x];
     });
 
     //Overrite with the display value for this column
     detailsData["Service type"] = table
       .cell(rowNumber, "ServiceType:name")
       .render("display");
+
+    //Custom replacements
+    if (detailsData["Website"]) {
+      detailsData["Website"] =
+        `<a href='${detailsData["Website"]}'>${detailsData["Website"]}</a>`;
+    }
 
     // Creates the content string, <dt><dd>
     const content = Object.keys(detailsData)
