@@ -1,0 +1,9 @@
+.et_pb_blurb_container {
+    height: auto;
+    min-height: 15rem;
+}
+
+header.global-header .navigation .container .nav-item a {
+    color: var(--bs-main, #046b99);
+    font-size: 1.3rem;
+}
