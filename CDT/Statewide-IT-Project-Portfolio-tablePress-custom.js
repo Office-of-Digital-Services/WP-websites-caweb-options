@@ -66,10 +66,6 @@ function TablePressCustomCommands() {
   }
 
   return /** @type {import("datatables.net").Config} */ ({
-    search: {
-      exact: true,
-      smart: false
-    },
     columns: [
       { data: "Agency Name" },
       {
