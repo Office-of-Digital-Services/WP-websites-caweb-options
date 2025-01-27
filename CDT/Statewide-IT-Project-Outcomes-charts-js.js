@@ -5,10 +5,15 @@ const successfulRows = Array.from(rows).filter(row => {
   const outcomeCell = row.querySelector("td:nth-child(6)");
   return outcomeCell && outcomeCell.textContent.trim() === "Successful";
 });
+const challengedRows = Array.from(rows).filter(row => {
+  const outcomeCell = row.querySelector("td:nth-child(6)");
+  return outcomeCell && outcomeCell.textContent.trim() === "Challenged";
+});
 const totalProjects = rows.length;
 const totalSuccessful = successfulRows.length;
-const percentSuccessful = Math.floor((totalSuccessful / totalProjects) * 100);
-const percentChallenged = 100 - percentSuccessful;
+const totalChallenged = challengedRows.length;
+const percentSuccessful = Math.round((totalSuccessful / totalProjects) * 100);
+const percentChallenged = Math.round((totalChallenged / totalProjects) * 100);
 
 // BAR CHART START
 const stateValues = [
