@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- libraries to rin this page localy -->
+    <link
+      href="https://cdn.cdt.ca.gov/cdt/statetemplate/6.5.1/css/cagov.core.min.css"
+      rel="stylesheet"
+      integrity="sha256-f2k3x0x/l4G+mg5fxnV+Q37/8RoMOoMOWphHJ4vWn6g="
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.cdt.ca.gov/cdt/statetemplate/6.5.1/js/cagov.core.min.js"
+      integrity="sha256-MRHAOqwc4jjHeTGa/9mcdxAv3aVG+lQ7eJ9DPa+Gr/k="
+      defer
+      crossorigin="anonymous"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      crossorigin="anonymous"></script>
+
+    <!-- End local libraries  -->
+
+    <!-- Add these styles to customcssCode divi code block -->
+    <style>
+
+            @media (min-width: 992px){
+            table#courseTable{width: auto;}
+            }
+
+            div#theTable {margin-bottom: -35px;}
+
+            tr#coursetblheader {background: #fff;}
+            /*td::first-letter {text-transform: capitalize;}
+            td {text-transform: lowercase;}*/
+
+
+            span.dt-column-order::before {color: #000; opacity:0;}
+            span.dt-column-order::after {color: #000; opacity:0;}
+
+            th.column-1.sorting.sorting_asc.dt-orderable-asc.dt-orderable-desc.dt-ordering-asc {
+                background-color: #C4E3F2;}
+
+            span.dt-column-order::before{
+                -webkit-font-smoothing: antialiased;
+                bottom: 0;
+                font-family: TablePress;
+                font-size: 14px;
+                font-weight: 400;
+                height: 1px;
+                left: auto;
+                line-height: 1;
+                margin: auto;
+                position: absolute;
+                right: 6px;
+                top: 0;
+                bottom: 0 !important;
+                opacity: 100 !important;
+            }
+
+            span.dt-column-order::after{
+                -webkit-font-smoothing: antialiased;
+                bottom: 0;
+                font-family: TablePress;
+                font-size: 14px;
+                font-weight: 400;
+                height: 1px;
+                left: auto;
+                line-height: 1;
+                margin: auto;
+                position: absolute;
+                right: 6px;
+                top: 0;
+                 bottom: 0;
+               opacity: 10 !important;
+            }
+
+            .table-responsive {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            span.dt-column-order {font-size: 14px;}
+
+            th.column-2.sorting.dt-type-numeric.dt-orderable-asc.dt-orderable-desc {
+                text-align: left;
+            }
+            th.column-3.sorting.dt-type-numeric.dt-orderable-asc.dt-orderable-desc {
+                text-align: left;
+            }
+            th.column-4.sorting.dt-type-numeric.dt-orderable-asc.dt-orderable-desc {
+                text-align: left;
+            }
+
+            table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date{text-align: left !important;}
+
+            tr.coursetblheader {
+                background: #eef8fb;
+            }
+
+            .btn-open-modal {
+              background-color: transparent;
+              color: var(--color-p2);
+              border: none;
+              text-decoration: underline;
+              cursor: pointer;
+            }
+
+            .btn-open-modal:hover, .btn-open-modal:focus {
+              color: var(--color-p2-darker);
+              text-decoration: none;
+            }
+            @media (min-width: 1200px) {
+          .modal-lg, .modal-xl {
+              --bs-modal-width: 1000px;
+          }
+
+          .modal .close {
+            margin-left: auto;
+          }
+      }
+    </style>
+    <!-- End customcssCode -->
+  </head>
+  <body>
+    <!-- maintableCode -->
+    <iframe
+      id="dataiframe"
+      src="https://resources.technology.ca.gov/opd/tec/trsched/sched_json.asp"
+      height="1px"
+      width="1px"
+      title="Course Schedule Data"
+      style="overflow-x:auto"></iframe>
+    <div id="theTable"></div>
+
+    <table
+      id="courseTable"
+      class="table table-striped, table-responsive"
+      style="width: 100%; overflow-y:hidden;">
+      <thead>
+        <tr class="coursetblheader">
+          <th class="column-0 sorting">Course Title</th>
+          <th class="column-1 sorting sorting_asc">Course Date</th>
+          <th class="column-2 sorting">Seats filled</th>
+          <th class="column-3 sorting">Max Seats</th>
+          <th class="column-4 sorting">Available Status</th>
+        </tr>
+      </thead>
+      <tbody id="courseInfo"></tbody>
+    </table>
+
+    <div class="modals"></div>
+    <script>
+      var eventMethodSchedule = window.addEventListener ? "addEventListener" : "attachEvent";
+      var eventerSchedule = window[eventMethodSchedule];
+      var messageEventSchedule = eventMethodSchedule == "attachEvent" ? "onmessage" : "message";
+      var countSchedule = 0;
+      var course_table = 0;
+
+      setTimeout(function() {
+        document.body.appendChild(document.querySelector('.modals'));
+      }, 2000);
+      // Listen to message from child window
+      eventerSchedule(messageEventSchedule, function (e) {
+        var dataToUse = e.data;
+        if (dataToUse.length > 10) {
+          countSchedule = countSchedule + 1;
+          if (countSchedule < 3) {
+            // removeElement("dataiframe");
+            var dataToProcess = JSON.parse(dataToUse);
+            var captionText =
+              '<div style="padding: 10px; background-color: #164675; color: #FFFFFF; font-weight: bold; font-size: 1.3em; width: 100%; text-align: center;">Courses at Training & Education Center<br/>Data last updated on ' +
+              dataToProcess.updateddate +
+              " at " +
+              dataToProcess.updatedtime +
+              "</div>";
+            console.log(dataToProcess);
+            var arrayLength = dataToProcess.Data.length;
+            var courseListing = "";
+            var theTextStuff = "";
+            var statustext = "";
+            if (arrayLength > 0) {
+              for (var i = 0; i < arrayLength; i++) {
+                if (dataToProcess.Data[i].availablestatus.indexOf("FULL") >= 0) {
+                  statustext = '<span style="color: #660000;">FULL</span>';
+                } else {
+                  statustext = '<span style="color: #006600;">OPEN</span>';
+                }
+
+                if (i & 1) {
+                  // https://resources.technology.ca.gov/opd/tec/trsched/classinfo.aspx?page=
+                } else {
+                  // No-op
+                }
+
+
+
+                theTextStuff =
+                  theTextStuff +
+                    '<tr><td><button class="btn-open-modal text-left" data-bs-toggle="modal" data-bs-target="#modal' + i + '" id="modalButton' + i + '">' +
+                  dataToProcess.Data[i].coursetitle +
+                  "</button></td><td>" +
+                  dataToProcess.Data[i].coursedates +
+                  "</td><td>" +
+                  dataToProcess.Data[i].seatsfilled +
+                  "</td><td>" +
+                  dataToProcess.Data[i].maxseats +
+                  "</td><td>" +
+                  statustext +
+                  "</td></tr>";
+
+                  // Modal HTML template
+                  var modalHtml =
+                    '<div class="modal fade" id="modal' + i + '" role="dialog" tabindex="-1">' +
+                    '<div class="modal-dialog modal-lg">' +
+                    '<div class="modal-content">' +
+                    '<div class="modal-header">' +
+                    '<h3 class="h4 modal-title" id="modalHeader">' + dataToProcess.Data[i].coursetitle + '</h3>' +
+                    '<button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">' +
+                    '<span class="sr-only">Close modal</span>' +
+                    '<span class="ca-gov-icon-close-mark" aria-hidden="true"></span>' +
+                    '</button>' +
+                    '</div>' +
+                    '<div class="modal-body" id="modalBody">' +
+                    '<iframe src="https://resources.technology.ca.gov/opd/tec/trsched/' +
+                    dataToProcess.Data[i].coursedescurl +
+                    '" width="100%" height="500" style="border:none;"></iframe>' +
+                    '</div>' +
+                    '<div class="modal-footer">' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+
+                  // Append modal to body if not already present
+                    if (!document.getElementById('modal' + i)) {
+                    document.querySelector('.modals').insertAdjacentHTML('beforeend', modalHtml);
+                    }
+
+                  // Add click event to open modal
+                  setTimeout(function() {
+                    var btn = document.getElementById('modalButton' + i);
+                    if (btn) {
+                    btn.onclick = function() {
+                      var modal = new bootstrap.Modal(document.getElementById('modal' + i));
+                      modal.show();
+                    };
+                    }
+                  }, 0);
+              }
+
+
+            }
+
+            document.getElementById("courseInfo").innerHTML = theTextStuff;
+            document.getElementById("theTable").innerHTML = captionText + " " + courseListing + "<br />";
+            console.log(dataToProcess);
+
+
+          }
+        }
+
+        // Sort 3/18/24
+        if (course_table == 0) {
+          $.fn.dataTable.moment("MM/DD/YYYY-");
+          course_table = $("#courseTable").DataTable({
+            ordering: true,
+            order: [[1, "asc"]],
+            paging: false,
+            searching: false,
+            info: false,
+          });
+        }
+      }, false);
+
+      function removeElement(elementId) {
+        // Removes an element from the document
+        var element = document.getElementById(elementId);
+        element.parentNode.removeChild(element);
+      }
+    </script>
+    <!-- END maintableCode -->
+
+    <!--SORTscriptCode-->
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"
+      defer></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"
+      defer></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/plug-ins/2.0.2/sorting/datetime-moment.js"
+      defer></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css"
+      type="text/css" />
+
+    <!--End SORTscriptCode-->
+  </body>
+</html>
