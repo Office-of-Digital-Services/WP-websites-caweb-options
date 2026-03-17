@@ -1,7 +1,7 @@
 //@ts-check
 
 /* -----------------------------------------
- SIDE NAVIGATION SCRIPT ADAPTED FOR WORDPRESS
+Side Navigation Script for WordPress Integration
 ----------------------------------------- */
 
 (function waitForSideNav() {
