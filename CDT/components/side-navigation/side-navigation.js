@@ -1,0 +1,205 @@
+//@ts-check
+
+/* -----------------------------------------
+ SIDE NAVIGATION SCRIPT ADAPTED FOR WORDPRESS
+----------------------------------------- */
+
+(function waitForSideNav() {
+  const sidenav = document.querySelector(".side-navigation");
+  const siteHeader = document.querySelector("header");
+  if (sidenav && siteHeader) {
+    // Your side navigation code here
+    window.addEventListener("load", () => {
+      const siteHeader = document.querySelector("header");
+      const sidenavigation = /** @type {HTMLElement} */ (
+        document.querySelector(".side-navigation")
+      );
+      if (!sidenavigation || !siteHeader) return;
+      const allSidenavLinks = /** @type {NodeListOf<HTMLElement>} */ (
+        sidenavigation.querySelectorAll(".side-navigation a")
+      );
+      const mainContentSideNavCont = sidenavigation.closest("div");
+      sidenavigation.id = "side-navigation";
+      const topposition = localStorage.getItem("sidebar-scroll");
+      const mobileCntls = document.querySelector(
+        ".global-header .mobile-control.toggle-menu"
+      );
+      if (!mobileCntls) return;
+      let mobileControlsDisplay = window.getComputedStyle(mobileCntls).display; // Side nav height vs viewport
+      const siteHeaderHeight = siteHeader ? siteHeader.clientHeight : 0;
+      const mobileView$3 = () =>
+        getComputedStyle(mobileCntls)["display"] !== "none";
+      let timeout = 0;
+      const delay = 250; // delay between calls
+      /** @type {HTMLElement} */
+      let mobileSideNavDiv,
+        /** @type {HTMLDivElement} */ mobileSideNavCont,
+        /** @type {HTMLButtonElement} */ sidenavToggleBtn;
+
+      const createMobileSideNavButton = () => {
+        // get first side nav element
+        /** @type {HTMLAnchorElement | null} */
+        const sidenavTItle = document.querySelector(
+          ".side-navigation a, .sidenav"
+        );
+
+        if (sidenavTItle) {
+          // get text for the button for first side nav element
+          let btnText = sidenavTItle.innerText;
+          const btnTextSpan =
+            sidenavTItle.querySelector("span")?.innerText || ""; // removing the sr-only span and it's content
+          btnText = btnText.replace(btnTextSpan, "").trim();
+          // create button container
+          const sidenavMobile = document.createElement("aside");
+          sidenavMobile.className = "sidenav-mobile-btn";
+          const sidenavMobileCont = document.createElement("div");
+          sidenavMobileCont.className = "container";
+          sidenavMobile.append(sidenavMobileCont);
+          // create button
+          sidenavToggleBtn = document.createElement("button");
+          sidenavToggleBtn.type = "button";
+          sidenavToggleBtn.className = "sidenav-toggle";
+          sidenavToggleBtn.ariaExpanded = "false";
+          sidenavToggleBtn.setAttribute("aria-controls", "side-navigation");
+          sidenavToggleBtn.innerText = btnText;
+          // create icon
+          const arrowIcon = document.createElement("span");
+          arrowIcon.ariaHidden = "true";
+          arrowIcon.className = "ca-gov-icon-caret-down";
+          sidenavToggleBtn.append(arrowIcon);
+          // append button into the header
+          sidenavMobileCont.append(sidenavToggleBtn);
+          siteHeader.after(sidenavMobile);
+          // add click event
+          sidenavToggleBtn.addEventListener("click", toggleSideNav);
+        }
+      };
+
+      const createmobileSideNavDiv = () => {
+        mobileSideNavDiv = document.createElement("aside");
+        mobileSideNavDiv.className = "mobile-sidenav";
+        mobileSideNavCont = document.createElement("div");
+        mobileSideNavCont.className = "container";
+        mobileSideNavDiv.append(mobileSideNavCont);
+        siteHeader.after(mobileSideNavDiv);
+      };
+
+      // MOBILE Side nav
+      const moveSideNavToHeader = () => {
+        if (mobileSideNavCont) {
+          mobileSideNavCont.append(sidenavigation);
+        }
+
+        sidenavigation.ariaHidden = "true";
+        allSidenavLinks?.forEach(el => {
+          el.tabIndex = -1;
+        });
+      };
+
+      // DESKTOP Side nav
+      const moveSideNavToMainContent = () => {
+        if (sidenavigation === mainContentSideNavCont) return; //Prevents an error if sidenav is not set up correctly
+
+        mainContentSideNavCont?.append(sidenavigation);
+        sidenavigation.removeAttribute("aria-hidden");
+        allSidenavLinks?.forEach(el => {
+          el.removeAttribute("tabindex");
+        });
+      };
+
+      // Mobile Side Nav Button click function
+      const toggleSideNav = () => {
+        mobileSideNavDiv.classList.toggle("visible");
+        // Open
+        if (mobileSideNavDiv.classList.contains("visible")) {
+          sidenavigation.removeAttribute("aria-hidden");
+          sidenavToggleBtn.ariaExpanded = "true";
+          allSidenavLinks?.forEach(el => {
+            el.removeAttribute("tabindex");
+          });
+
+          // Closed
+        } else {
+          sidenavToggleBtn.ariaExpanded = "false";
+          sidenavigation.ariaHidden = "true";
+          allSidenavLinks?.forEach(el => {
+            el.tabIndex = -1;
+          });
+        }
+      };
+
+      /**
+       * Set active class on nav-heading links
+       */
+      function addActiveClass() {
+        /** @type {NodeListOf<HTMLAnchorElement>} */
+        const active_link = document.querySelectorAll("a.nav-heading"),
+          len = active_link.length,
+          full_path = location.href.split("#")[0]; //Ignore hashes? // Loop through each link.
+        for (let i = 0; i < len; i++)
+          if (active_link[i].href.split("#")[0] == full_path)
+            active_link[i].className += " active";
+      }
+
+      const sidenavOverflow = () => {
+        if (!mobileView$3()) {
+          const viewportheight = document.documentElement.clientHeight;
+          const viewportMinusHeader = viewportheight - siteHeaderHeight - 100;
+
+          if (
+            viewportMinusHeader <=
+            (document.querySelector(".side-navigation")?.clientHeight || 0)
+          ) {
+            sidenavigation.classList.add("overflow-auto"); // sidenavigation.setAttribute("style", "max-height:" + viewportMinusHeader + "px")
+          } else {
+            sidenavigation.classList.remove("overflow-auto");
+            sidenavigation.removeAttribute("style");
+          }
+
+          if ([...sidenavigation.classList].includes("overflow-auto")) {
+            sidenavigation.setAttribute(
+              "style",
+              `max-height:${viewportMinusHeader}px`
+            );
+          }
+        } else {
+          sidenavigation.classList.remove("overflow-auto");
+          sidenavigation.removeAttribute("style");
+        } // Remebemering scrolling position
+        if (topposition !== null) {
+          sidenavigation.scrollTop = parseInt(topposition, 10);
+        }
+        window.addEventListener("beforeunload", () => {
+          localStorage.setItem(
+            "sidebar-scroll",
+            sidenavigation.scrollTop.toString()
+          );
+        });
+      };
+
+      // ONLOAD
+      addActiveClass();
+      createmobileSideNavDiv();
+      createMobileSideNavButton();
+
+      if (mobileControlsDisplay !== "none") {
+        moveSideNavToHeader();
+      }
+      // on resize
+      window.addEventListener("resize", () => {
+        mobileControlsDisplay = getComputedStyle(mobileCntls).display; // clear the timeout
+
+        window.clearTimeout(timeout); // start timing for event "completion"
+        timeout = window.setTimeout(sidenavOverflow, delay); // if mobile
+        if (mobileControlsDisplay !== "none") {
+          moveSideNavToHeader(); // if mobile
+        } else {
+          moveSideNavToMainContent();
+        }
+      });
+      sidenavOverflow();
+    });
+  } else {
+    setTimeout(waitForSideNav, 100); // Try again in 100ms
+  }
+})();
